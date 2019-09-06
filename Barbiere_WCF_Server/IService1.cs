@@ -13,13 +13,13 @@ namespace Barbiere_WCF_Server {
         [OperationContract]
         string Registration(string Nome, string Cognome, string Utente, string Password, bool Admin);
         [OperationContract]
-        string UserChecker(string Utente);
+        bool UserChecker(string Utente);
         [OperationContract]
         bool Login(string Utente, string Password, bool Admin);
         [OperationContract]
         string AddBooking(string Utente, DateTime Date, DateTime Time);
         string PasswordRecovery(string Utente, string Password);
         [OperationContract]
-        string UserPasswordChange(string Utenye, string Password);
+        string UserPasswordChange(string Utente, string Password);
     }
 }

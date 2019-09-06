@@ -28,7 +28,7 @@
   <xs:element name="UserCheckerResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="UserCheckerResult" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="UserCheckerResult" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -64,39 +64,10 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="ViewBooking">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="Utente" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ViewBookingResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="ViewBookingResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="PasswordRecovery">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="Utente" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="PasswordRecoveryResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="PasswordRecoveryResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="UserPasswordChange">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="Utenye" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Utente" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>

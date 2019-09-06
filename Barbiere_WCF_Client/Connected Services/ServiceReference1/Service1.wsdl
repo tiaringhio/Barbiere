@@ -30,18 +30,6 @@
   <wsdl:message name="IService1_AddBooking_OutputMessage">
     <wsdl:part name="parameters" element="tns:AddBookingResponse" />
   </wsdl:message>
-  <wsdl:message name="IService1_ViewBooking_InputMessage">
-    <wsdl:part name="parameters" element="tns:ViewBooking" />
-  </wsdl:message>
-  <wsdl:message name="IService1_ViewBooking_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ViewBookingResponse" />
-  </wsdl:message>
-  <wsdl:message name="IService1_PasswordRecovery_InputMessage">
-    <wsdl:part name="parameters" element="tns:PasswordRecovery" />
-  </wsdl:message>
-  <wsdl:message name="IService1_PasswordRecovery_OutputMessage">
-    <wsdl:part name="parameters" element="tns:PasswordRecoveryResponse" />
-  </wsdl:message>
   <wsdl:message name="IService1_UserPasswordChange_InputMessage">
     <wsdl:part name="parameters" element="tns:UserPasswordChange" />
   </wsdl:message>
@@ -64,14 +52,6 @@
     <wsdl:operation name="AddBooking">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddBooking" message="tns:IService1_AddBooking_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddBookingResponse" message="tns:IService1_AddBooking_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="ViewBooking">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService1/ViewBooking" message="tns:IService1_ViewBooking_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService1/ViewBookingResponse" message="tns:IService1_ViewBooking_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="PasswordRecovery">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService1/PasswordRecovery" message="tns:IService1_PasswordRecovery_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService1/PasswordRecoveryResponse" message="tns:IService1_PasswordRecovery_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="UserPasswordChange">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/UserPasswordChange" message="tns:IService1_UserPasswordChange_InputMessage" />
@@ -109,24 +89,6 @@
     </wsdl:operation>
     <wsdl:operation name="AddBooking">
       <soap:operation soapAction="http://tempuri.org/IService1/AddBooking" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ViewBooking">
-      <soap:operation soapAction="http://tempuri.org/IService1/ViewBooking" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="PasswordRecovery">
-      <soap:operation soapAction="http://tempuri.org/IService1/PasswordRecovery" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

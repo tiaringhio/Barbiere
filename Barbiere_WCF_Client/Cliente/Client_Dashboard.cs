@@ -36,8 +36,17 @@ namespace Barbiere_WCF_Client.Cliente {
 
         private void BookingButton_Click(object sender, EventArgs e)
         {
-            client.AddBooking(UsernameDisplayer.Text, DatePicker.Value, TimePicker.Value);
-            MessageBox.Show("Ci vediamo " + DatePicker.Text + " alle ore: " + TimePicker.Text + "!");
+            try
+            {
+                client.AddBooking(user, DatePicker.Value, TimePicker.Value);
+                MessageBox.Show("olè");
+                    MessageBox.Show("Ci vediamo " + DatePicker.Text + " alle ore: " + TimePicker.Text + "!");
+            }
+            catch (Exception exce)
+            {
+                MessageBox.Show(exce.ToString());
+            }
+
         }
 
         private void MenuMiePrenotazioni_Click(object sender, EventArgs e)

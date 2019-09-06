@@ -47,9 +47,17 @@ namespace Barbiere_WCF_Client {
             // Then i check that the username is available
             try
             {
-                client.Registration(NameBox.Text, SurnameBox.Text, UserBoxSign.Text, HashedPassword, AdminCheck.Checked);
+                // If it's taken i show a message...
+                if (!client.UserChecker(UserBoxSign.Text)) {
+                    MessageBox.Show("Username already taken!");
+                }
+                // ... otherwise i let the user register
+                else
+                {
+                    client.Registration(NameBox.Text, SurnameBox.Text, UserBoxSign.Text, HashedPassword, AdminCheck.Checked);
                     MessageBox.Show("Registration succeded, you can now login!");
-
+                    Clear();
+                }
             }
             catch (Exception exce)
             {
@@ -81,39 +89,56 @@ namespace Barbiere_WCF_Client {
             }
             try
             {
-                Barbiere_WCF_Server.Service1 server = new Barbiere_WCF_Server.Service1();
-                
-                bool Admin = server.isAdmin;
-                if (client.Login(UserBoxLog.Text, HashedPassword, Admin))
+                using (SqlConnection sqlCon = new SqlConnection(Properties.Settings.Default.ConnectionString))
                 {
-                  
-                    MessageBox.Show("Bentornato " + UserBoxLog.Text);
-                    // bool che controlla se l'utente è admin
-                    try
+                    sqlCon.Open();
+                    SqlCommand LoginChecker = new SqlCommand("LoginChecker", sqlCon);
+                    LoginChecker.CommandType = CommandType.StoredProcedure;
+                    LoginChecker.Parameters.AddWithValue("@Utente", UserBoxLog.Text);
+                    LoginChecker.Parameters.AddWithValue("@Password", HashedPassword);
+                    LoginChecker.ExecuteNonQuery();
+
+                    SqlDataReader myReader = LoginChecker.ExecuteReader(CommandBehavior.CloseConnection);
+
+                    if (myReader.Read())
                     {
-                        MessageBox.Show("value" + Admin);
-                        UserTitle = UserBoxLog.Text;
-                        // If the user is admin i open the admin dashboard...
-                        if (!Admin)
+                        MessageBox.Show("Bentornato " + UserBoxLog.Text);
+                        // bool che controlla se l'utente è admin
+                        try
                         {
-                            Client_Dashboard cliente = new Client_Dashboard();
-                            this.Hide();
-                            cliente.ShowDialog();
+                            bool isAdmin = (bool)myReader["Admin"];
                             UserTitle = UserBoxLog.Text;
+                            // If the user is admin i open the admin dashboard...
+                            if (isAdmin)
+                            {
+                                Admin_Dashboard admin = new Admin_Dashboard();
+                                this.Hide();
+                                admin.ShowDialog();
+                                UserTitle = UserBoxLog.Text;
+
+                            }
+                            // ... else i open the client dashboard
+                            else
+                            {
+                                Client_Dashboard cliente = new Client_Dashboard();
+                                this.Hide();
+                                cliente.ShowDialog();
+                                UserTitle = UserBoxLog.Text;
+                            }
                         }
-                        // ... else i open the client dashboard
-                        else
+                        catch (Exception gne)
                         {
-                            Admin_Dashboard admin = new Admin_Dashboard();
-                            this.Hide();
-                            admin.ShowDialog();
-                            UserTitle = UserBoxLog.Text;
-                            
+                            MessageBox.Show(gne.ToString());
                         }
+
                     }
-                    catch (Exception gne)
+                    // If the data is incorrect it means tha either the user or the password are wrong
+                    else
                     {
-                        MessageBox.Show(gne.ToString());
+                        MessageBox.Show("Utente o Password sbagliati!");
+                        UserBoxLog.Clear();
+                        PasswordBoxLog.Clear();
+                        UserBoxLog.Focus();
                     }
                 }
             }

@@ -131,6 +131,12 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Barbiere_WCF_Server\Barbiere_WCF_Server.csproj">
+      <Project>{97ced173-3190-4713-b136-e84dc73a2299}</Project>
+      <Name>Barbiere_WCF_Server</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\ServiceReference1\" />
   </ItemGroup>
   <ItemGroup>
@@ -147,12 +153,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Barbiere_WCF_Server\Barbiere_WCF_Server.csproj">
-      <Project>{97ced173-3190-4713-b136-e84dc73a2299}</Project>
-      <Name>Barbiere_WCF_Server</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -12,6 +12,34 @@ namespace Barbiere_WCF_Server {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in code, svc and config file together.
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class Service1 : IService1 {
+        bool IService1.UserChecker(string Utente)
+        {
+            try
+            {
+                using (SqlConnection sqlcon = new SqlConnection(Properties.Settings.Default.ConnectionString))
+                {
+                    sqlcon.Open();
+                    SqlCommand UserChecker = new SqlCommand("SELECT Utente FROM Clienti Where Utente = @Utente", sqlcon);
+                    UserChecker.Parameters.AddWithValue("@Utente", Utente);
+                    var result = UserChecker.ExecuteScalar();
+                    if (result != null)
+                    {
+                        return false;
+                    }
+
+                    else
+                    {
+                        return true;
+                    }
+                }
+            }
+            catch (Exception exce)
+            {
+                Console.WriteLine(exce.ToString());
+            }
+            throw new NotImplementedException();
+        }
+
         public string Registration(string Nome, string Cognome, string Utente, string Password, bool Admin)
         {
             try
@@ -28,12 +56,12 @@ namespace Barbiere_WCF_Server {
                     UserAdd.Parameters.AddWithValue("@Admin", Admin);
                     UserAdd.ExecuteNonQuery();
                 }
-                return "test";
+                return "Success!";
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
-                return "errorino";
+                return "Error!";
             }
             throw new NotImplementedException();
         }
@@ -55,15 +83,14 @@ namespace Barbiere_WCF_Server {
 
                     SqlDataReader myReader = LoginChecker.ExecuteReader(CommandBehavior.CloseConnection);
 
-                    //bool isAdmin = false;
-                    while (myReader.Read())
+                    if (myReader.Read())
                     {
                         bool isAdmin = (bool)myReader["Admin"];
-
+                        
                         if (isAdmin)
                             return true;
                         else
-                            return false;
+                            return false;     
                     }
                     // If the data is incorrect it means tha either the user or the password are wrong
                 }
@@ -98,23 +125,29 @@ namespace Barbiere_WCF_Server {
                 return "errorino";
             }
         }
+
+
+
+
+
+
+
+
+
+
+
         public string PasswordRecovery(string Utente, string Password)
         {
             throw new NotImplementedException();
         }
 
-        public string UserChecker(string Utente)
+
+
+        public string UserPasswordChange(string Utente, string Password)
         {
             throw new NotImplementedException();
         }
 
-        public string UserPasswordChange(string Utenye, string Password)
-        {
-            throw new NotImplementedException();
-        }
 
-        
-
-        
     }
 }
