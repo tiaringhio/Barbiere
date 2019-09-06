@@ -9,9 +9,8 @@ using System.ServiceModel.Web;
 using System.Text;
 
 namespace Barbiere_WCF_Server {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in code, svc and config file together.
-    // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class Service1 : IService1 {
+        // When the user tries to register first i have to check that the username chosen is available
         bool IService1.UserChecker(string Utente)
         {
             try
@@ -27,10 +26,7 @@ namespace Barbiere_WCF_Server {
                         return false;
                     }
 
-                    else
-                    {
-                        return true;
-                    }
+                    return true;
                 }
             }
             catch (Exception exce)
@@ -39,7 +35,9 @@ namespace Barbiere_WCF_Server {
             }
             throw new NotImplementedException();
         }
-
+        // With this method i add the values in the database, using a stored procedure.
+        // I chose to use a stored procedure because it's cleaner and more secure, since
+        // i use parameters the code is not vulnerable to SQL Injection
         public string Registration(string Nome, string Cognome, string Utente, string Password, bool Admin)
         {
             try
@@ -88,11 +86,13 @@ namespace Barbiere_WCF_Server {
                         bool isAdmin = (bool)myReader["Admin"];
                         
                         if (isAdmin)
+                        {
                             return true;
-                        else
-                            return false;     
+                        }
+
+                        return false;
                     }
-                    // If the data is incorrect it means tha either the user or the password are wrong
+                    // If the data is incorrect it means tha either the user or the password are wrong.
                 }
             }
             catch (Exception gne)
@@ -126,28 +126,56 @@ namespace Barbiere_WCF_Server {
             }
         }
 
-
-
-
-
-
-
-
-
-
-
+        // In this function i use a stored procedure where i update the password given the user that the client inputs.
+        // The password will be hashed trough EasyEncryption, via the MD5 protocol.
         public string PasswordRecovery(string Utente, string Password)
         {
-            throw new NotImplementedException();
+            try
+            {
+                
+                using (SqlConnection sqlCon = new SqlConnection(Properties.Settings.Default.ConnectionString))
+                {
+                    sqlCon.Open();
+                    SqlCommand PasswordRecovery = new SqlCommand("PasswordRecovery", sqlCon);
+                    PasswordRecovery.CommandType = CommandType.StoredProcedure;
+                    PasswordRecovery.Parameters.AddWithValue("@Utente", Utente);
+                    PasswordRecovery.Parameters.AddWithValue("@Password", Password);
+                    PasswordRecovery.ExecuteNonQuery();
+                }
+                return "It works!";
+            }
+            catch
+            {
+                return "Error!";
+            }
         }
 
-
-
-        public string UserPasswordChange(string Utente, string Password)
+        // This function allows the user to change username and password,
+        // i used a stored procedure that allows me to check which field is empty,
+        // so that the user can change either username or password or both in one simple click
+        public string UserPasswordChange(string Utente, string Password, string oldUtente, string oldPassword)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (SqlConnection sqlcon = new SqlConnection(Properties.Settings.Default.ConnectionString))
+                {
+                    sqlcon.Open();
+                    using (SqlCommand UserPasswordChange = new SqlCommand("UserPasswordChange", sqlcon))
+                    {
+                        UserPasswordChange.CommandType = CommandType.StoredProcedure;
+                        UserPasswordChange.Parameters.AddWithValue("@Utente", Utente);
+                        UserPasswordChange.Parameters.AddWithValue("@Password", Password);
+                        UserPasswordChange.Parameters.AddWithValue("@OldUser", oldUtente);
+                        UserPasswordChange.Parameters.AddWithValue("@OldPassword", oldPassword);
+                        UserPasswordChange.ExecuteNonQuery();
+                    }
+                }
+                return "magari va";
+            }
+            catch
+            {
+                return "errore";
+            }
         }
-
-
     }
 }

@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Barbiere_WCF_Client;
+using Barbiere_WCF_Client.Cliente;
 
 namespace Barbiere_WCF_Client.Cliente {
     public partial class Password_Recovery : Form {
@@ -16,6 +17,7 @@ namespace Barbiere_WCF_Client.Cliente {
         {
             InitializeComponent();
         }
+        ServiceReference1.Service1Client client = new ServiceReference1.Service1Client();
         // At the click of this button the store procedure will change the password, only if the username exist
         private void PasswordRecoveryButton_Click(object sender, EventArgs e)
         {
@@ -40,21 +42,13 @@ namespace Barbiere_WCF_Client.Cliente {
                 // in this stored procedure i update the passord given the user that the client inputs
                 // The password will be hashed trough EasyEncryption, via the MD5 protocol
                 string HashedPassword = EasyEncryption.MD5.ComputeMD5Hash(PasswordRecoveryNew.Text);
-                using (SqlConnection sqlCon = new SqlConnection(Properties.Settings.Default.ConnectionString))
-                {
-                    sqlCon.Open();
-                    SqlCommand PasswordRecovery = new SqlCommand("PasswordRecovery", sqlCon);
-                    PasswordRecovery.CommandType = CommandType.StoredProcedure;
-                    PasswordRecovery.Parameters.AddWithValue("@Utente", PasswordRecoveryUser.Text);
-                    PasswordRecovery.Parameters.AddWithValue("@Password", HashedPassword);
-                    PasswordRecovery.ExecuteNonQuery();
-                    // I show a message to the user letting him/her know that the password has been changed
-                    MessageBox.Show("Password cambiata con successo, effettua il login");
-                    // Then i send him/her back to the initial form to login
-                    Barbiere logreg = new Barbiere();
-                    this.Hide();
-                    logreg.ShowDialog();   
-                }
+                client.PasswordRecovery(PasswordRecoveryUser.Text, HashedPassword);
+                // I show a message to the user letting him/her know that the password has been changed
+                MessageBox.Show("Password cambiata con successo, effettua il login");
+                // Then i send him/her back to the initial form to login
+                Barbiere logreg = new Barbiere();
+                this.Hide();
+                logreg.ShowDialog();
             }
              catch (Exception exc)
             {

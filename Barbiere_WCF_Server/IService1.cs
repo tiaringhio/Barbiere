@@ -11,15 +11,20 @@ namespace Barbiere_WCF_Server {
     [ServiceContract]
     public interface IService1 {
         [OperationContract]
+        // FATTO
         string Registration(string Nome, string Cognome, string Utente, string Password, bool Admin);
         [OperationContract]
+        // FATTO
         bool UserChecker(string Utente);
         [OperationContract]
         bool Login(string Utente, string Password, bool Admin);
         [OperationContract]
         string AddBooking(string Utente, DateTime Date, DateTime Time);
+        [OperationContract]
+        // FATTO
         string PasswordRecovery(string Utente, string Password);
         [OperationContract]
-        string UserPasswordChange(string Utente, string Password);
+        // FATTO
+        string UserPasswordChange(string Utente, string Password, string oldUtente, string oldPassword);
     }
 }

@@ -48,9 +48,11 @@
             this.OldPasswordBox = new System.Windows.Forms.TextBox();
             this.NewPasswordBoxConfirm = new System.Windows.Forms.TextBox();
             this.NewPasswordBox = new System.Windows.Forms.TextBox();
+            this.CurrentUserBox = new System.Windows.Forms.TextBox();
             this.NewUserBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.NewUsername = new System.Windows.Forms.Label();
             this.TitoloProfilo = new System.Windows.Forms.Label();
@@ -69,7 +71,8 @@
             this.UsernameDisplayer.AutoSize = true;
             this.UsernameDisplayer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
             this.UsernameDisplayer.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UsernameDisplayer.Location = new System.Drawing.Point(132, 673);
+            this.UsernameDisplayer.Location = new System.Drawing.Point(99, 547);
+            this.UsernameDisplayer.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.UsernameDisplayer.Name = "UsernameDisplayer";
             this.UsernameDisplayer.Size = new System.Drawing.Size(47, 24);
             this.UsernameDisplayer.TabIndex = 6;
@@ -81,7 +84,8 @@
             this.DashTitle.AutoSize = true;
             this.DashTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
             this.DashTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DashTitle.Location = new System.Drawing.Point(68, 71);
+            this.DashTitle.Location = new System.Drawing.Point(51, 58);
+            this.DashTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.DashTitle.Name = "DashTitle";
             this.DashTitle.Size = new System.Drawing.Size(147, 31);
             this.DashTitle.TabIndex = 10;
@@ -99,8 +103,8 @@
             this.MenuProfile});
             this.SideMenu.Location = new System.Drawing.Point(0, 0);
             this.SideMenu.Name = "SideMenu";
-            this.SideMenu.Padding = new System.Windows.Forms.Padding(8, 200, 0, 2);
-            this.SideMenu.Size = new System.Drawing.Size(316, 785);
+            this.SideMenu.Padding = new System.Windows.Forms.Padding(6, 162, 0, 2);
+            this.SideMenu.Size = new System.Drawing.Size(237, 638);
             this.SideMenu.TabIndex = 12;
             this.SideMenu.Text = "menuStrip1";
             // 
@@ -142,9 +146,10 @@
             this.LogOutLink.AutoSize = true;
             this.LogOutLink.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
             this.LogOutLink.LinkColor = System.Drawing.SystemColors.Control;
-            this.LogOutLink.Location = new System.Drawing.Point(134, 631);
+            this.LogOutLink.Location = new System.Drawing.Point(100, 513);
+            this.LogOutLink.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LogOutLink.Name = "LogOutLink";
-            this.LogOutLink.Size = new System.Drawing.Size(55, 16);
+            this.LogOutLink.Size = new System.Drawing.Size(45, 13);
             this.LogOutLink.TabIndex = 14;
             this.LogOutLink.TabStop = true;
             this.LogOutLink.Text = "Log-Out";
@@ -159,9 +164,10 @@
             this.BookPanel.Controls.Add(this.Data);
             this.BookPanel.Controls.Add(this.DatePicker);
             this.BookPanel.Controls.Add(this.TimePicker);
-            this.BookPanel.Location = new System.Drawing.Point(418, 186);
+            this.BookPanel.Location = new System.Drawing.Point(314, 151);
+            this.BookPanel.Margin = new System.Windows.Forms.Padding(2);
             this.BookPanel.Name = "BookPanel";
-            this.BookPanel.Size = new System.Drawing.Size(885, 400);
+            this.BookPanel.Size = new System.Drawing.Size(664, 325);
             this.BookPanel.TabIndex = 15;
             // 
             // BookingButton
@@ -169,9 +175,10 @@
             this.BookingButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
             this.BookingButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BookingButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BookingButton.Location = new System.Drawing.Point(352, 284);
+            this.BookingButton.Location = new System.Drawing.Point(264, 231);
+            this.BookingButton.Margin = new System.Windows.Forms.Padding(2);
             this.BookingButton.Name = "BookingButton";
-            this.BookingButton.Size = new System.Drawing.Size(200, 44);
+            this.BookingButton.Size = new System.Drawing.Size(150, 36);
             this.BookingButton.TabIndex = 3;
             this.BookingButton.Text = "Prenota";
             this.BookingButton.UseVisualStyleBackColor = false;
@@ -180,7 +187,8 @@
             // 
             this.TitoloPanelPrenota.AutoSize = true;
             this.TitoloPanelPrenota.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TitoloPanelPrenota.Location = new System.Drawing.Point(272, 57);
+            this.TitoloPanelPrenota.Location = new System.Drawing.Point(204, 46);
+            this.TitoloPanelPrenota.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.TitoloPanelPrenota.Name = "TitoloPanelPrenota";
             this.TitoloPanelPrenota.Size = new System.Drawing.Size(297, 31);
             this.TitoloPanelPrenota.TabIndex = 10;
@@ -190,7 +198,8 @@
             // 
             this.Ora.AutoSize = true;
             this.Ora.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Ora.Location = new System.Drawing.Point(301, 207);
+            this.Ora.Location = new System.Drawing.Point(226, 168);
+            this.Ora.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Ora.Name = "Ora";
             this.Ora.Size = new System.Drawing.Size(48, 26);
             this.Ora.TabIndex = 10;
@@ -200,7 +209,8 @@
             // 
             this.Data.AutoSize = true;
             this.Data.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Data.Location = new System.Drawing.Point(288, 132);
+            this.Data.Location = new System.Drawing.Point(216, 107);
+            this.Data.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Data.Name = "Data";
             this.Data.Size = new System.Drawing.Size(58, 26);
             this.Data.TabIndex = 10;
@@ -210,10 +220,11 @@
             // 
             this.DatePicker.CustomFormat = "ddd dd MMM";
             this.DatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DatePicker.Location = new System.Drawing.Point(407, 142);
+            this.DatePicker.Location = new System.Drawing.Point(305, 115);
+            this.DatePicker.Margin = new System.Windows.Forms.Padding(2);
             this.DatePicker.MinDate = new System.DateTime(2019, 8, 25, 0, 0, 0, 0);
             this.DatePicker.Name = "DatePicker";
-            this.DatePicker.Size = new System.Drawing.Size(200, 22);
+            this.DatePicker.Size = new System.Drawing.Size(151, 20);
             this.DatePicker.TabIndex = 1;
             this.DatePicker.Value = new System.DateTime(2019, 8, 25, 0, 0, 0, 0);
             // 
@@ -223,11 +234,12 @@
             this.TimePicker.CalendarMonthBackground = System.Drawing.Color.Black;
             this.TimePicker.CustomFormat = "HH:mm";
             this.TimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.TimePicker.Location = new System.Drawing.Point(407, 217);
+            this.TimePicker.Location = new System.Drawing.Point(305, 176);
+            this.TimePicker.Margin = new System.Windows.Forms.Padding(2);
             this.TimePicker.MinDate = new System.DateTime(2019, 8, 25, 0, 0, 0, 0);
             this.TimePicker.Name = "TimePicker";
             this.TimePicker.ShowUpDown = true;
-            this.TimePicker.Size = new System.Drawing.Size(200, 22);
+            this.TimePicker.Size = new System.Drawing.Size(151, 20);
             this.TimePicker.TabIndex = 2;
             this.TimePicker.Value = new System.DateTime(2019, 8, 25, 15, 31, 40, 0);
             // 
@@ -238,15 +250,18 @@
             this.ProfilePanel.Controls.Add(this.OldPasswordBox);
             this.ProfilePanel.Controls.Add(this.NewPasswordBoxConfirm);
             this.ProfilePanel.Controls.Add(this.NewPasswordBox);
+            this.ProfilePanel.Controls.Add(this.CurrentUserBox);
             this.ProfilePanel.Controls.Add(this.NewUserBox);
             this.ProfilePanel.Controls.Add(this.label3);
             this.ProfilePanel.Controls.Add(this.label2);
+            this.ProfilePanel.Controls.Add(this.label4);
             this.ProfilePanel.Controls.Add(this.label1);
             this.ProfilePanel.Controls.Add(this.NewUsername);
             this.ProfilePanel.Controls.Add(this.TitoloProfilo);
-            this.ProfilePanel.Location = new System.Drawing.Point(415, 189);
+            this.ProfilePanel.Location = new System.Drawing.Point(311, 147);
+            this.ProfilePanel.Margin = new System.Windows.Forms.Padding(2);
             this.ProfilePanel.Name = "ProfilePanel";
-            this.ProfilePanel.Size = new System.Drawing.Size(885, 400);
+            this.ProfilePanel.Size = new System.Drawing.Size(664, 325);
             this.ProfilePanel.TabIndex = 16;
             this.ProfilePanel.Visible = false;
             // 
@@ -257,53 +272,69 @@
             this.ChangeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ChangeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ChangeButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.ChangeButton.Location = new System.Drawing.Point(665, 209);
+            this.ChangeButton.Location = new System.Drawing.Point(493, 173);
+            this.ChangeButton.Margin = new System.Windows.Forms.Padding(2);
             this.ChangeButton.Name = "ChangeButton";
-            this.ChangeButton.Size = new System.Drawing.Size(136, 34);
+            this.ChangeButton.Size = new System.Drawing.Size(102, 28);
             this.ChangeButton.TabIndex = 5;
             this.ChangeButton.Text = "Change";
             this.ChangeButton.UseVisualStyleBackColor = false;
+            this.ChangeButton.Click += new System.EventHandler(this.ChangeButton_Click_1);
             // 
             // OldPasswordBox
             // 
-            this.OldPasswordBox.Location = new System.Drawing.Point(417, 292);
+            this.OldPasswordBox.Location = new System.Drawing.Point(317, 257);
+            this.OldPasswordBox.Margin = new System.Windows.Forms.Padding(2);
             this.OldPasswordBox.Multiline = true;
             this.OldPasswordBox.Name = "OldPasswordBox";
             this.OldPasswordBox.PasswordChar = '*';
-            this.OldPasswordBox.Size = new System.Drawing.Size(138, 30);
+            this.OldPasswordBox.Size = new System.Drawing.Size(104, 25);
             this.OldPasswordBox.TabIndex = 4;
             // 
             // NewPasswordBoxConfirm
             // 
-            this.NewPasswordBoxConfirm.Location = new System.Drawing.Point(417, 230);
+            this.NewPasswordBoxConfirm.Location = new System.Drawing.Point(317, 207);
+            this.NewPasswordBoxConfirm.Margin = new System.Windows.Forms.Padding(2);
             this.NewPasswordBoxConfirm.Multiline = true;
             this.NewPasswordBoxConfirm.Name = "NewPasswordBoxConfirm";
             this.NewPasswordBoxConfirm.PasswordChar = '*';
-            this.NewPasswordBoxConfirm.Size = new System.Drawing.Size(138, 30);
+            this.NewPasswordBoxConfirm.Size = new System.Drawing.Size(104, 25);
             this.NewPasswordBoxConfirm.TabIndex = 3;
             // 
             // NewPasswordBox
             // 
-            this.NewPasswordBox.Location = new System.Drawing.Point(417, 182);
+            this.NewPasswordBox.Location = new System.Drawing.Point(317, 168);
+            this.NewPasswordBox.Margin = new System.Windows.Forms.Padding(2);
             this.NewPasswordBox.Multiline = true;
             this.NewPasswordBox.Name = "NewPasswordBox";
             this.NewPasswordBox.PasswordChar = '*';
-            this.NewPasswordBox.Size = new System.Drawing.Size(138, 30);
+            this.NewPasswordBox.Size = new System.Drawing.Size(104, 25);
             this.NewPasswordBox.TabIndex = 2;
+            // 
+            // CurrentUserBox
+            // 
+            this.CurrentUserBox.Location = new System.Drawing.Point(317, 92);
+            this.CurrentUserBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CurrentUserBox.Multiline = true;
+            this.CurrentUserBox.Name = "CurrentUserBox";
+            this.CurrentUserBox.Size = new System.Drawing.Size(104, 25);
+            this.CurrentUserBox.TabIndex = 1;
             // 
             // NewUserBox
             // 
-            this.NewUserBox.Location = new System.Drawing.Point(417, 131);
+            this.NewUserBox.Location = new System.Drawing.Point(317, 129);
+            this.NewUserBox.Margin = new System.Windows.Forms.Padding(2);
             this.NewUserBox.Multiline = true;
             this.NewUserBox.Name = "NewUserBox";
-            this.NewUserBox.Size = new System.Drawing.Size(138, 30);
+            this.NewUserBox.Size = new System.Drawing.Size(104, 25);
             this.NewUserBox.TabIndex = 1;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(215, 292);
+            this.label3.Location = new System.Drawing.Point(169, 257);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(78, 20);
             this.label3.TabIndex = 1;
@@ -313,17 +344,30 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(142, 230);
+            this.label2.Location = new System.Drawing.Point(110, 207);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(137, 20);
             this.label2.TabIndex = 1;
             this.label2.Text = "Confirm Password";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(107, 92);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(140, 20);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "Current Username";
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(167, 182);
+            this.label1.Location = new System.Drawing.Point(134, 168);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(113, 20);
             this.label1.TabIndex = 1;
@@ -333,7 +377,8 @@
             // 
             this.NewUsername.AutoSize = true;
             this.NewUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NewUsername.Location = new System.Drawing.Point(167, 131);
+            this.NewUsername.Location = new System.Drawing.Point(129, 129);
+            this.NewUsername.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.NewUsername.Name = "NewUsername";
             this.NewUsername.Size = new System.Drawing.Size(118, 20);
             this.NewUsername.TabIndex = 1;
@@ -343,7 +388,8 @@
             // 
             this.TitoloProfilo.AutoSize = true;
             this.TitoloProfilo.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F);
-            this.TitoloProfilo.Location = new System.Drawing.Point(345, 46);
+            this.TitoloProfilo.Location = new System.Drawing.Point(259, 37);
+            this.TitoloProfilo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.TitoloProfilo.Name = "TitoloProfilo";
             this.TitoloProfilo.Size = new System.Drawing.Size(162, 31);
             this.TitoloProfilo.TabIndex = 0;
@@ -354,9 +400,10 @@
             this.MyBookingsPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
             this.MyBookingsPanel.Controls.Add(this.MyBookingsTable);
             this.MyBookingsPanel.Controls.Add(this.MyBookingsTitle);
-            this.MyBookingsPanel.Location = new System.Drawing.Point(412, 183);
+            this.MyBookingsPanel.Location = new System.Drawing.Point(309, 149);
+            this.MyBookingsPanel.Margin = new System.Windows.Forms.Padding(2);
             this.MyBookingsPanel.Name = "MyBookingsPanel";
-            this.MyBookingsPanel.Size = new System.Drawing.Size(885, 400);
+            this.MyBookingsPanel.Size = new System.Drawing.Size(664, 325);
             this.MyBookingsPanel.TabIndex = 18;
             // 
             // MyBookingsTable
@@ -385,7 +432,8 @@
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.MyBookingsTable.DefaultCellStyle = dataGridViewCellStyle5;
             this.MyBookingsTable.GridColor = System.Drawing.SystemColors.Control;
-            this.MyBookingsTable.Location = new System.Drawing.Point(169, 128);
+            this.MyBookingsTable.Location = new System.Drawing.Point(127, 104);
+            this.MyBookingsTable.Margin = new System.Windows.Forms.Padding(2);
             this.MyBookingsTable.Name = "MyBookingsTable";
             this.MyBookingsTable.ReadOnly = true;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -399,14 +447,15 @@
             this.MyBookingsTable.RowHeadersVisible = false;
             this.MyBookingsTable.RowHeadersWidth = 51;
             this.MyBookingsTable.RowTemplate.Height = 24;
-            this.MyBookingsTable.Size = new System.Drawing.Size(577, 150);
+            this.MyBookingsTable.Size = new System.Drawing.Size(433, 122);
             this.MyBookingsTable.TabIndex = 3;
             // 
             // MyBookingsTitle
             // 
             this.MyBookingsTitle.AutoSize = true;
             this.MyBookingsTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F);
-            this.MyBookingsTitle.Location = new System.Drawing.Point(345, 46);
+            this.MyBookingsTitle.Location = new System.Drawing.Point(259, 37);
+            this.MyBookingsTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.MyBookingsTitle.Name = "MyBookingsTitle";
             this.MyBookingsTitle.Size = new System.Drawing.Size(169, 31);
             this.MyBookingsTitle.TabIndex = 0;
@@ -414,18 +463,19 @@
             // 
             // Client_Dashboard
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
-            this.ClientSize = new System.Drawing.Size(1420, 785);
-            this.Controls.Add(this.MyBookingsPanel);
+            this.ClientSize = new System.Drawing.Size(1065, 638);
             this.Controls.Add(this.ProfilePanel);
+            this.Controls.Add(this.MyBookingsPanel);
             this.Controls.Add(this.BookPanel);
             this.Controls.Add(this.LogOutLink);
             this.Controls.Add(this.UsernameDisplayer);
             this.Controls.Add(this.DashTitle);
             this.Controls.Add(this.SideMenu);
             this.ForeColor = System.Drawing.SystemColors.Control;
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Client_Dashboard";
             this.Text = "Dashboard";
             this.Load += new System.EventHandler(this.Dashboard_Load);
@@ -472,5 +522,7 @@
         private System.Windows.Forms.Panel MyBookingsPanel;
         private System.Windows.Forms.DataGridView MyBookingsTable;
         private System.Windows.Forms.Label MyBookingsTitle;
+        private System.Windows.Forms.TextBox CurrentUserBox;
+        private System.Windows.Forms.Label label4;
     }
 }

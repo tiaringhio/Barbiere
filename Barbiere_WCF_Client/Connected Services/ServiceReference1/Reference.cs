@@ -39,11 +39,17 @@ namespace Barbiere_WCF_Client.ServiceReference1 {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddBooking", ReplyAction="http://tempuri.org/IService1/AddBookingResponse")]
         System.Threading.Tasks.Task<string> AddBookingAsync(string Utente, System.DateTime Date, System.DateTime Time);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UserPasswordChange", ReplyAction="http://tempuri.org/IService1/UserPasswordChangeResponse")]
-        string UserPasswordChange(string Utente, string Password);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/PasswordRecovery", ReplyAction="http://tempuri.org/IService1/PasswordRecoveryResponse")]
+        string PasswordRecovery(string Utente, string Password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/PasswordRecovery", ReplyAction="http://tempuri.org/IService1/PasswordRecoveryResponse")]
+        System.Threading.Tasks.Task<string> PasswordRecoveryAsync(string Utente, string Password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UserPasswordChange", ReplyAction="http://tempuri.org/IService1/UserPasswordChangeResponse")]
-        System.Threading.Tasks.Task<string> UserPasswordChangeAsync(string Utente, string Password);
+        string UserPasswordChange(string Utente, string Password, string oldUtente, string oldPassword);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UserPasswordChange", ReplyAction="http://tempuri.org/IService1/UserPasswordChangeResponse")]
+        System.Threading.Tasks.Task<string> UserPasswordChangeAsync(string Utente, string Password, string oldUtente, string oldPassword);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -105,12 +111,20 @@ namespace Barbiere_WCF_Client.ServiceReference1 {
             return base.Channel.AddBookingAsync(Utente, Date, Time);
         }
         
-        public string UserPasswordChange(string Utente, string Password) {
-            return base.Channel.UserPasswordChange(Utente, Password);
+        public string PasswordRecovery(string Utente, string Password) {
+            return base.Channel.PasswordRecovery(Utente, Password);
         }
         
-        public System.Threading.Tasks.Task<string> UserPasswordChangeAsync(string Utente, string Password) {
-            return base.Channel.UserPasswordChangeAsync(Utente, Password);
+        public System.Threading.Tasks.Task<string> PasswordRecoveryAsync(string Utente, string Password) {
+            return base.Channel.PasswordRecoveryAsync(Utente, Password);
+        }
+        
+        public string UserPasswordChange(string Utente, string Password, string oldUtente, string oldPassword) {
+            return base.Channel.UserPasswordChange(Utente, Password, oldUtente, oldPassword);
+        }
+        
+        public System.Threading.Tasks.Task<string> UserPasswordChangeAsync(string Utente, string Password, string oldUtente, string oldPassword) {
+            return base.Channel.UserPasswordChangeAsync(Utente, Password, oldUtente, oldPassword);
         }
     }
 }

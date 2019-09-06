@@ -1,0 +1,6 @@
+projectKey=Barbiere_WCF
+serverUrl=http://localhost:9000
+serverVersion=7.7.0.23042
+dashboardUrl=http://localhost:9000/dashboard?id=Barbiere_WCF
+ceTaskId=AW0HlNNN0vc2h_kD-Rvu
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AW0HlNNN0vc2h_kD-Rvu

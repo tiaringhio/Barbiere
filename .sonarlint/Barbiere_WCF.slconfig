@@ -1,0 +1,12 @@
+{
+  "ServerUri": "http://localhost:9000/",
+  "Organization": null,
+  "ProjectKey": "Barbiere_WCF",
+  "ProjectName": "Barbiere_WCF",
+  "Profiles": {
+    "CSharp": {
+      "ProfileKey": "AWr4ySO62Abp8B0-dwrn",
+      "ProfileTimestamp": "2019-05-27T12:14:52+02:00"
+    }
+  }
+}

@@ -25,7 +25,7 @@ namespace Barbiere_WCF_Client.Cliente {
         ServiceReference1.Service1Client client = new ServiceReference1.Service1Client();
         private void Dashboard_Load(object sender, EventArgs e)
         {
-            // Mostro lo username dell'utente loggato
+            // The username is showed in the form
             UsernameDisplayer.Text = user;
         }
         private void MenuPrenota_Click(object sender, EventArgs e)
@@ -86,11 +86,19 @@ namespace Barbiere_WCF_Client.Cliente {
             hidePanels();
             ProfilePanel.Visible = true;
         }
-        // This stored procedure allows the user to change username and password
-        private void ChangeButton_Click(object sender, EventArgs e)
+        
+        // This Method allows the user to change username or password or both, the data is sent to a WCF
+        // service that handles the information with a stored procedure
+
+        private void ChangeButton_Click_1(object sender, EventArgs e)
         {
+            if (NewPasswordBox.Text == "" && NewPasswordBoxConfirm.Text == "" && NewUserBox.Text == "" && OldPasswordBox.Text == "")
+            {
+                MessageBox.Show("Are you sure you're in the right place?");
+                NewPasswordBox.Focus();
+            }
             // First i check if the passwords match
-            if (NewPasswordBox.Text != NewPasswordBoxConfirm.Text )
+            else if (NewPasswordBox.Text != NewPasswordBoxConfirm.Text)
             {
                 MessageBox.Show("Passwords don't match");
                 NewPasswordBox.Focus();
@@ -108,40 +116,32 @@ namespace Barbiere_WCF_Client.Cliente {
             {
                 try
                 {
+                    // The passwords will be hashed trough EasyEncryption, via the MD5 protocol
                     string OldHashedPassword = EasyEncryption.MD5.ComputeMD5Hash(OldPasswordBox.Text);
                     string NewHashedPassword = "";
                     if (NewPasswordBox.Text != "")
-                        NewHashedPassword = EasyEncryption.MD5.ComputeMD5Hash(NewPasswordBox.Text);
-                    using (SqlConnection sqlcon = new SqlConnection(Properties.Settings.Default.ConnectionString))
                     {
-                        sqlcon.Open();
-                        using (SqlCommand UserPasswordChange = new SqlCommand("UserPasswordChange", sqlcon))
-                        {
-                            UserPasswordChange.CommandType = CommandType.StoredProcedure;
-                            UserPasswordChange.Parameters.AddWithValue("@Utente", NewUserBox.Text);
-                            UserPasswordChange.Parameters.AddWithValue("@Password", NewHashedPassword);
-                            UserPasswordChange.Parameters.AddWithValue("@OldUser", UsernameDisplayer.Text);
-                            UserPasswordChange.Parameters.AddWithValue("@OldPassword", OldHashedPassword);
-                            UserPasswordChange.ExecuteNonQuery();
-                            MessageBox.Show("Confirmed!");
-                            return;
-                        }
+                        NewHashedPassword = EasyEncryption.MD5.ComputeMD5Hash(NewPasswordBox.Text);
+                    }
+                    client.UserPasswordChange(NewUserBox.Text, NewHashedPassword, CurrentUserBox.Text, OldHashedPassword);
+                    MessageBox.Show("Information changed!");
+                    if (NewUserBox.Text != "" && OldPasswordBox.Text != "")
+                    {
+                        UsernameDisplayer.Text = NewUserBox.Text;
                     }
                 }
-                catch (Exception exce)
+                catch (Exception yu)
                 {
-                    exce.ToString();
+                    MessageBox.Show(yu.ToString());
                 }
             }
         }
-        // Simple
+        // Simple log out
         private void LogOutLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Barbiere logreg = new Barbiere();
             this.Hide();
             logreg.ShowDialog();
         }
-
-        
     }
 }

@@ -10,7 +10,6 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using Barbiere_WCF_Client.Admin;
 using Barbiere_WCF_Client.Cliente;
-using Barbiere_WCF_Server;
 
 namespace Barbiere_WCF_Client {
     public partial class Barbiere : Form {
@@ -29,11 +28,16 @@ namespace Barbiere_WCF_Client {
             string HashedPassword = EasyEncryption.MD5.ComputeMD5Hash(PasswordBoxSign.Text);
             // First i check that the TextBoxes are not empty...
             if (UserBoxSign.Text == "" || PasswordBoxSign.Text == "")
-                MessageBox.Show("Questi valori sono obbligatori!");
+            {
+                MessageBox.Show("These fields are mandatory!");
+                UserBoxSign.Focus();
+                PasswordBoxSign.Focus();
+            }
+
             // ... and that the password are the same ...
             else if (PasswordBoxSign.Text != PasswordBoxSignConfirm.Text)
             {
-                MessageBox.Show("Le password non corrispondono!");
+                MessageBox.Show("The passwords don't match'!");
                 PasswordBoxSign.Focus();
                 return;
             }
@@ -63,8 +67,8 @@ namespace Barbiere_WCF_Client {
             {
                 MessageBox.Show(exce.ToString());
             }
-
         }
+        // This function clears every textbox
         void Clear()
         {
             NameBox.Text = SurnameBox.Text = UserBoxSign.Text = PasswordBoxSign.Text = PasswordBoxSignConfirm.Text = "";
@@ -77,13 +81,13 @@ namespace Barbiere_WCF_Client {
             // First i check that the TextBoxes are not empty...
             if (UserBoxLog.Text == "")
             {
-                MessageBox.Show("Perfavore inserisci il nome utente");
+                MessageBox.Show("You forgot the username!");
                 UserBoxLog.Focus();
                 return;
             }
             else if (PasswordBoxLog.Text == "")
             {
-                MessageBox.Show("Perfavore inserisci la password");
+                MessageBox.Show("You forgot the password");
                 PasswordBoxLog.Focus();
                 return;
             }
@@ -109,7 +113,7 @@ namespace Barbiere_WCF_Client {
                             bool isAdmin = (bool)myReader["Admin"];
                             UserTitle = UserBoxLog.Text;
                             // If the user is admin i open the admin dashboard...
-                            if (isAdmin)
+                            if (!isAdmin)
                             {
                                 Admin_Dashboard admin = new Admin_Dashboard();
                                 this.Hide();
@@ -135,7 +139,7 @@ namespace Barbiere_WCF_Client {
                     // If the data is incorrect it means tha either the user or the password are wrong
                     else
                     {
-                        MessageBox.Show("Utente o Password sbagliati!");
+                        MessageBox.Show("username or password (or both) are wrong!");
                         UserBoxLog.Clear();
                         PasswordBoxLog.Clear();
                         UserBoxLog.Focus();
@@ -144,7 +148,7 @@ namespace Barbiere_WCF_Client {
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Errore");
+                MessageBox.Show(ex.Message, "Error!");
             }
         }
         // When the user clicks on password recovery i open a form when he can reset the password, given the username

@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace Barbiere_WCF_Client.Admin {
     public partial class Admin_Dashboard : Form {
+        string user = Barbiere.UserTitle;
         public Admin_Dashboard()
         {
             InitializeComponent();
@@ -17,7 +18,8 @@ namespace Barbiere_WCF_Client.Admin {
 
         private void Admin_Dashboard_Load(object sender, EventArgs e)
         {
-
+            // The username is showed in the form
+            UsernameDisplayer.Text = user;
         }
 
         private void LogOutLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
