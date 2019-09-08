@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using Barbiere_WCF_Client.Admin;
 using Barbiere_WCF_Client.Cliente;
+using Barbiere_WCF_Server;
 
 namespace Barbiere_WCF_Client {
     public partial class Barbiere : Form {
@@ -22,6 +23,7 @@ namespace Barbiere_WCF_Client {
         }
         // I add the data that the user inputs in the db, using a stored procedure called UserAdd
         ServiceReference1.Service1Client client = new ServiceReference1.Service1Client();
+        Service1 server = new Service1();
         private void RegistrationButton_Click(object sender, EventArgs e)
         {
             // The password will be hashed trough EasyEncryption, via the MD5 protocol
@@ -93,65 +95,41 @@ namespace Barbiere_WCF_Client {
             }
             try
             {
-                using (SqlConnection sqlCon = new SqlConnection(Properties.Settings.Default.ConnectionString))
+                bool isAdmin = server.isAdmin;
+                client.Login(UserBoxLog.Text, HashedPassword);
+                MessageBox.Show(isAdmin.ToString());
+
+                client.Admin(UserBoxLog.Text);
+                MessageBox.Show(isAdmin.ToString());
+                UserTitle = UserBoxLog.Text;
+                // If the user is admin i open the admin dashboard...
+                if (isAdmin)
                 {
-                    sqlCon.Open();
-                    SqlCommand LoginChecker = new SqlCommand("LoginChecker", sqlCon);
-                    LoginChecker.CommandType = CommandType.StoredProcedure;
-                    LoginChecker.Parameters.AddWithValue("@Utente", UserBoxLog.Text);
-                    LoginChecker.Parameters.AddWithValue("@Password", HashedPassword);
-                    LoginChecker.ExecuteNonQuery();
+                    Admin_Dashboard admin = new Admin_Dashboard();
+                    this.Hide();
+                    admin.ShowDialog();
+                    UserTitle = UserBoxLog.Text;
 
-                    SqlDataReader myReader = LoginChecker.ExecuteReader(CommandBehavior.CloseConnection);
-
-                    if (myReader.Read())
-                    {
-                        MessageBox.Show("Bentornato " + UserBoxLog.Text);
-                        // bool che controlla se l'utente è admin
-                        try
-                        {
-                            bool isAdmin = (bool)myReader["Admin"];
-                            UserTitle = UserBoxLog.Text;
-                            // If the user is admin i open the admin dashboard...
-                            if (!isAdmin)
-                            {
-                                Admin_Dashboard admin = new Admin_Dashboard();
-                                this.Hide();
-                                admin.ShowDialog();
-                                UserTitle = UserBoxLog.Text;
-
-                            }
-                            // ... else i open the client dashboard
-                            else
-                            {
-                                Client_Dashboard cliente = new Client_Dashboard();
-                                this.Hide();
-                                cliente.ShowDialog();
-                                UserTitle = UserBoxLog.Text;
-                            }
-                        }
-                        catch (Exception gne)
-                        {
-                            MessageBox.Show(gne.ToString());
-                        }
-
-                    }
-                    // If the data is incorrect it means tha either the user or the password are wrong
-                    else
-                    {
-                        MessageBox.Show("username or password (or both) are wrong!");
-                        UserBoxLog.Clear();
-                        PasswordBoxLog.Clear();
-                        UserBoxLog.Focus();
-                    }
+                }
+                // ... else i open the client dashboard
+                else
+                {
+                    Client_Dashboard cliente = new Client_Dashboard();
+                    this.Hide();
+                    cliente.ShowDialog();
+                    UserTitle = UserBoxLog.Text;
                 }
             }
-            catch (Exception ex)
+            catch (Exception gne)
             {
-                MessageBox.Show(ex.Message, "Error!");
+                MessageBox.Show("username or password (or both) are wrong!");
+                UserBoxLog.Clear();
+                PasswordBoxLog.Clear();
+                UserBoxLog.Focus();
+                MessageBox.Show(gne.ToString());
             }
         }
-        // When the user clicks on password recovery i open a form when he can reset the password, given the username
+
         private void PasswordRecoveryLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Hide();
@@ -160,3 +138,4 @@ namespace Barbiere_WCF_Client {
         }
     }
 }
+

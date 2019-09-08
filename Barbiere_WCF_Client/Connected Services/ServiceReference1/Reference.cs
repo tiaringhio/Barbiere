@@ -28,10 +28,16 @@ namespace Barbiere_WCF_Client.ServiceReference1 {
         System.Threading.Tasks.Task<bool> UserCheckerAsync(string Utente);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Login", ReplyAction="http://tempuri.org/IService1/LoginResponse")]
-        bool Login(string Utente, string Password, bool Admin);
+        bool Login(string Utente, string Password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Login", ReplyAction="http://tempuri.org/IService1/LoginResponse")]
-        System.Threading.Tasks.Task<bool> LoginAsync(string Utente, string Password, bool Admin);
+        System.Threading.Tasks.Task<bool> LoginAsync(string Utente, string Password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Admin", ReplyAction="http://tempuri.org/IService1/AdminResponse")]
+        bool Admin(string User);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Admin", ReplyAction="http://tempuri.org/IService1/AdminResponse")]
+        System.Threading.Tasks.Task<bool> AdminAsync(string User);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddBooking", ReplyAction="http://tempuri.org/IService1/AddBookingResponse")]
         string AddBooking(string Utente, System.DateTime Date, System.DateTime Time);
@@ -95,12 +101,20 @@ namespace Barbiere_WCF_Client.ServiceReference1 {
             return base.Channel.UserCheckerAsync(Utente);
         }
         
-        public bool Login(string Utente, string Password, bool Admin) {
-            return base.Channel.Login(Utente, Password, Admin);
+        public bool Login(string Utente, string Password) {
+            return base.Channel.Login(Utente, Password);
         }
         
-        public System.Threading.Tasks.Task<bool> LoginAsync(string Utente, string Password, bool Admin) {
-            return base.Channel.LoginAsync(Utente, Password, Admin);
+        public System.Threading.Tasks.Task<bool> LoginAsync(string Utente, string Password) {
+            return base.Channel.LoginAsync(Utente, Password);
+        }
+        
+        public bool Admin(string User) {
+            return base.Channel.Admin(User);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AdminAsync(string User) {
+            return base.Channel.AdminAsync(User);
         }
         
         public string AddBooking(string Utente, System.DateTime Date, System.DateTime Time) {

@@ -17,7 +17,9 @@ namespace Barbiere_WCF_Server {
         // FATTO
         bool UserChecker(string Utente);
         [OperationContract]
-        bool Login(string Utente, string Password, bool Admin);
+        bool Login(string Utente, string Password);
+        [OperationContract]
+        bool Admin(string User);
         [OperationContract]
         string AddBooking(string Utente, DateTime Date, DateTime Time);
         [OperationContract]

@@ -37,7 +37,6 @@
       <xs:sequence>
         <xs:element minOccurs="0" name="Utente" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="Admin" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -45,6 +44,20 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="LoginResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Admin">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="User" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AdminResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AdminResult" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

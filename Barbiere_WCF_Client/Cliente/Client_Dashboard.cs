@@ -39,8 +39,7 @@ namespace Barbiere_WCF_Client.Cliente {
             try
             {
                 client.AddBooking(user, DatePicker.Value, TimePicker.Value);
-                MessageBox.Show("olè");
-                    MessageBox.Show("Ci vediamo " + DatePicker.Text + " alle ore: " + TimePicker.Text + "!");
+                MessageBox.Show("Ci vediamo " + DatePicker.Text + " alle ore: " + TimePicker.Text + "!");
             }
             catch (Exception exce)
             {

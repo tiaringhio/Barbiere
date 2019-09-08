@@ -61,12 +61,11 @@ namespace Barbiere_WCF_Server {
                 Console.WriteLine(ex.ToString());
                 return "Error!";
             }
-            throw new NotImplementedException();
         }
 
         // LOGIN
-        public  bool isAdmin { get; set; }
-        public bool Login(string Utente, string Password, bool Admin)
+        
+        public bool Login(string Utente, string Password)
         {
             try
             {
@@ -77,31 +76,49 @@ namespace Barbiere_WCF_Server {
                     LoginChecker.CommandType = CommandType.StoredProcedure;
                     LoginChecker.Parameters.AddWithValue("@Utente", Utente);
                     LoginChecker.Parameters.AddWithValue("@Password", Password);
-                    LoginChecker.ExecuteNonQuery();
-
-                    SqlDataReader myReader = LoginChecker.ExecuteReader(CommandBehavior.CloseConnection);
-
-                    if (myReader.Read())
-                    {
-                        bool isAdmin = (bool)myReader["Admin"];
-                        
-                        if (isAdmin)
-                        {
-                            return true;
-                        }
-
-                        return false;
-                    }
-                    // If the data is incorrect it means tha either the user or the password are wrong.
+                    var result = LoginChecker.ExecuteNonQuery();
+                    return true;
                 }
             }
-            catch (Exception gne)
+            catch
             {
-                gne.ToString();
+                return false;
+            }
+        }
+        public bool isAdmin { get; set; }
+        public bool Admin(string User)
+        {
+            using (SqlConnection sqlCon = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            {
+                sqlCon.Open();
+                SqlCommand AdminChecker = new SqlCommand("SELECT Admin FROM Clienti WHERE Utente = @Utente AND @Admin = Admin",sqlCon);
+                AdminChecker.Parameters.AddWithValue("@Utente", User);
+                AdminChecker.Parameters.AddWithValue("@Admin", isAdmin);
+                AdminChecker.ExecuteNonQuery();
+                SqlDataReader myReader = AdminChecker.ExecuteReader(CommandBehavior.CloseConnection);
+                try
+                {
+                    if (myReader.Read())
+                    {
+                        bool adminino = (bool) myReader["Admin"];
+                        if (adminino)
+                            return true;
+                        else
+                            return false;
+                    }
+
+                }
+                catch
+                {
+
+                }
+            }
+            {
+                
             }
             throw new NotImplementedException();
         }
-        
+
         public string AddBooking(string Utente, DateTime Date, DateTime Time)
         {
             try
