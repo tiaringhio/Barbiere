@@ -1,7 +1,8 @@
-# Barbiere [![Build Status](https://travis-ci.org/tiaringhio/Barbiere_WCF.svg?branch=master)](https://travis-ci.org/tiaringhio/Barbiere_WCF)
+# Barbiere [![Build Status](https://travis-ci.org/tiaringhio/Barbiere_WCF.svg?branch=master)](https://travis-ci.org/tiaringhio/Barbiere_WCF) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/33ce920e933a454488a97253412cf862)](https://www.codacy.com/manual/tiaringhio/Barbiere_WCF?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tiaringhio/Barbiere_WCF&amp;utm_campaign=Badge_Grade)
  This is a program that uses WCF Services to book appointments with your barber trough an intuitive GUI.
  
- Checked with [Travis Ci](https://travis-ci.org/)
+ - Checked with [Travis Ci](https://travis-ci.org/)
+ - Checked with [Codacy](https://app.codacy.com)
  
 ## Requirements
 - SQL Express
