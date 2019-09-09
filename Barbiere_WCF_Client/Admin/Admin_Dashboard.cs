@@ -88,9 +88,9 @@ namespace Barbiere_WCF_Client.Admin
                         {
                             using (SqlDataAdapter datadapter = new SqlDataAdapter(ViewBookings))
                             {
-                                DataTable mieprenotazioni = new DataTable();
-                                datadapter.Fill(mieprenotazioni);
-                                MyBookingsTable.DataSource = mieprenotazioni;
+                                DataTable myBookings = new DataTable();
+                                datadapter.Fill(myBookings);
+                                MyBookingsTable.DataSource = myBookings;
                             }
                         }
                         catch (Exception bookingsException)
