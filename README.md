@@ -6,10 +6,10 @@
 - EasyEncryption
 - Microsoft IIS
 
-### Database (SQL Express)
-Included you will find  `Barbiere.sql`, this file contains everything you need  to create the database required to run Barbiere, included all the table and stored procedures.
+### [SQL Express](https://www.microsoft.com/en-us/sql-server/sql-server-editions-express)
+Included you will find  `Barbiere.sql`, this file contains everything you need  to create the database required to run Barbiere, included all the tables and stored procedures.
 
-### EasyEncryption [GitHub](https://github.com/polischuk/EasyEncryption)
+### [EasyEncryption](https://github.com/polischuk/EasyEncryption)
  To install EasyEncryption just write:
  
  `Install-Package EasyEncryption`
