@@ -398,7 +398,7 @@
             this.BookingButton.Name = "BookingButton";
             this.BookingButton.Size = new System.Drawing.Size(200, 44);
             this.BookingButton.TabIndex = 3;
-            this.BookingButton.Text = "Prenota";
+            this.BookingButton.Text = "Book";
             this.BookingButton.UseVisualStyleBackColor = false;
             this.BookingButton.Click += new System.EventHandler(this.Book);
             // 

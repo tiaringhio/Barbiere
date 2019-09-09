@@ -19,7 +19,7 @@ namespace Barbiere_WCF_Client.Cliente {
         }
 
         // Reference to WCF
-        ServiceReference1.Service1Client client = new ServiceReference1.Service1Client();
+        readonly ServiceReference1.Service1Client WCF = new ServiceReference1.Service1Client();
 
         // At the click of this button the store procedure will change the password, only if the username exist
         private void PasswordRecoveryButton_Click(object sender, EventArgs e)
@@ -44,7 +44,7 @@ namespace Barbiere_WCF_Client.Cliente {
                 string HashedPassword = EasyEncryption.MD5.ComputeMD5Hash(PasswordRecoveryNew.Text);
 
                 // I send the data to the WCF that updates the password given the user that the client inputs.
-                client.PasswordRecovery(PasswordRecoveryUser.Text, HashedPassword);
+                WCF.PasswordRecovery(PasswordRecoveryUser.Text, HashedPassword);
 
                 // I show a message to the user letting him/her know that the password has been changed
                 MessageBox.Show("Password changed successfully, you can now login");

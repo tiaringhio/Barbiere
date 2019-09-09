@@ -27,7 +27,7 @@ namespace Barbiere_WCF_Client {
         }
 
         // Reference to WCF
-        ServiceReference1.Service1Client WCF = new ServiceReference1.Service1Client();
+        readonly ServiceReference1.Service1Client WCF = new ServiceReference1.Service1Client();
 
         // This function clears every textbox
         void Clear()

@@ -11,15 +11,14 @@ using System.Data.SqlClient;
 
 namespace Barbiere_WCF_Client.Cliente {
     public partial class Client_Dashboard : Form {
-
-        string user = Barbiere.UserTitle;
+        readonly string user = Barbiere.UserTitle;
         
         public Client_Dashboard()
         {
             InitializeComponent();
         }
         // This function hides every panel
-        public void hidePanels()
+        public void HidePanels()
         {
             BookPanel.Visible = false;
             MyBookingsPanel.Visible = false;
@@ -27,7 +26,7 @@ namespace Barbiere_WCF_Client.Cliente {
         }
 
         // Reference to WCF
-        ServiceReference1.Service1Client WCF = new ServiceReference1.Service1Client();
+        readonly ServiceReference1.Service1Client WCF = new ServiceReference1.Service1Client();
 
         // On load i need to set some values...
         private void Dashboard_Load(object sender, EventArgs e)
@@ -47,7 +46,7 @@ namespace Barbiere_WCF_Client.Cliente {
         // At click i show the requested panel while hiding the others
         private void BookMenu(object sender, EventArgs e)
         {
-            hidePanels();
+            HidePanels();
             BookPanel.Visible = true;
         }
         // When i click the Book button i sent the value to the WCF Service, so they can be stored in the DB
@@ -69,7 +68,7 @@ namespace Barbiere_WCF_Client.Cliente {
         private void MyBookings(object sender, EventArgs e)
         {
             // I hide every panel except for the My Bookings one
-            hidePanels();
+            HidePanels();
             MyBookingsPanel.Visible = true;
             try
             {
@@ -107,7 +106,7 @@ namespace Barbiere_WCF_Client.Cliente {
         // At click i show the requested panel while hiding the others
         private void ProfileMenu(object sender, EventArgs e)
         {
-            hidePanels();
+            HidePanels();
             ProfilePanel.Visible = true;
         }
         
@@ -136,37 +135,35 @@ namespace Barbiere_WCF_Client.Cliente {
                 return;
             }
             // Finally i execute the stored procedure
-            if (OldPasswordBox.Text != null && (NewUserBox.Text != null || NewPasswordBox.Text != null))
+            if (OldPasswordBox.Text == null || (NewUserBox.Text == null && NewPasswordBox.Text == null)) return;
+            try
             {
+                // The passwords will be hashed trough EasyEncryption, via the MD5 protocol
+                string OldHashedPassword = EasyEncryption.MD5.ComputeMD5Hash(OldPasswordBox.Text);
+                string NewHashedPassword = "";
+                if (NewPasswordBox.Text != "")
+                {
+                    NewHashedPassword = EasyEncryption.MD5.ComputeMD5Hash(NewPasswordBox.Text);
+                }
+                // I send the data to the WCF Service
                 try
                 {
-                    // The passwords will be hashed trough EasyEncryption, via the MD5 protocol
-                    string OldHashedPassword = EasyEncryption.MD5.ComputeMD5Hash(OldPasswordBox.Text);
-                    string NewHashedPassword = "";
-                    if (NewPasswordBox.Text != "")
+                    WCF.UserPasswordChange(NewUserBox.Text, NewHashedPassword, CurrentUserBox.Text, OldHashedPassword);
+                    MessageBox.Show("Information changed!");
+                    if (NewUserBox.Text != "" && OldPasswordBox.Text != "")
                     {
-                        NewHashedPassword = EasyEncryption.MD5.ComputeMD5Hash(NewPasswordBox.Text);
-                    }
-                    // I send the data to the WCF Service
-                    try
-                    {
-                        WCF.UserPasswordChange(NewUserBox.Text, NewHashedPassword, CurrentUserBox.Text, OldHashedPassword);
-                        MessageBox.Show("Information changed!");
-                        if (NewUserBox.Text != "" && OldPasswordBox.Text != "")
-                        {
-                            UsernameDisplayer.Text = NewUserBox.Text;
-                        }
-                    }
-                    catch (Exception WCFexception)
-                    {
-                        Console.WriteLine(WCFexception);
-                        throw;
+                        UsernameDisplayer.Text = NewUserBox.Text;
                     }
                 }
-                catch (Exception changeException)
+                catch (Exception WCFexception)
                 {
-                    MessageBox.Show(changeException.ToString());
+                    Console.WriteLine(WCFexception);
+                    throw;
                 }
+            }
+            catch (Exception changeException)
+            {
+                MessageBox.Show(changeException.ToString());
             }
         }
         // Simple log out
