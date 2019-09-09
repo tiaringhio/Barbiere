@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
@@ -11,22 +12,16 @@ namespace Barbiere_WCF_Server {
     [ServiceContract]
     public interface IService1 {
         [OperationContract]
-        // FATTO
         string Registration(string Nome, string Cognome, string Utente, string Password, bool Admin);
         [OperationContract]
-        // FATTO
         bool UserChecker(string Utente);
         [OperationContract]
         bool Login(string Utente, string Password);
         [OperationContract]
-        bool Admin(string User);
-        [OperationContract]
         string AddBooking(string Utente, DateTime Date, DateTime Time);
         [OperationContract]
-        // FATTO
         string PasswordRecovery(string Utente, string Password);
         [OperationContract]
-        // FATTO
         string UserPasswordChange(string Utente, string Password, string oldUtente, string oldPassword);
     }
 }

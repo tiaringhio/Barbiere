@@ -33,17 +33,17 @@ namespace Barbiere_WCF_Client.ServiceReference1 {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Login", ReplyAction="http://tempuri.org/IService1/LoginResponse")]
         System.Threading.Tasks.Task<bool> LoginAsync(string Utente, string Password);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Admin", ReplyAction="http://tempuri.org/IService1/AdminResponse")]
-        bool Admin(string User);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Admin", ReplyAction="http://tempuri.org/IService1/AdminResponse")]
-        System.Threading.Tasks.Task<bool> AdminAsync(string User);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddBooking", ReplyAction="http://tempuri.org/IService1/AddBookingResponse")]
         string AddBooking(string Utente, System.DateTime Date, System.DateTime Time);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddBooking", ReplyAction="http://tempuri.org/IService1/AddBookingResponse")]
         System.Threading.Tasks.Task<string> AddBookingAsync(string Utente, System.DateTime Date, System.DateTime Time);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/ViewBookings", ReplyAction="http://tempuri.org/IService1/ViewBookingsResponse")]
+        bool ViewBookings(string Utente, System.Data.DataTable Table);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/ViewBookings", ReplyAction="http://tempuri.org/IService1/ViewBookingsResponse")]
+        System.Threading.Tasks.Task<bool> ViewBookingsAsync(string Utente, System.Data.DataTable Table);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/PasswordRecovery", ReplyAction="http://tempuri.org/IService1/PasswordRecoveryResponse")]
         string PasswordRecovery(string Utente, string Password);
@@ -109,20 +109,20 @@ namespace Barbiere_WCF_Client.ServiceReference1 {
             return base.Channel.LoginAsync(Utente, Password);
         }
         
-        public bool Admin(string User) {
-            return base.Channel.Admin(User);
-        }
-        
-        public System.Threading.Tasks.Task<bool> AdminAsync(string User) {
-            return base.Channel.AdminAsync(User);
-        }
-        
         public string AddBooking(string Utente, System.DateTime Date, System.DateTime Time) {
             return base.Channel.AddBooking(Utente, Date, Time);
         }
         
         public System.Threading.Tasks.Task<string> AddBookingAsync(string Utente, System.DateTime Date, System.DateTime Time) {
             return base.Channel.AddBookingAsync(Utente, Date, Time);
+        }
+        
+        public bool ViewBookings(string Utente, System.Data.DataTable Table) {
+            return base.Channel.ViewBookings(Utente, Table);
+        }
+        
+        public System.Threading.Tasks.Task<bool> ViewBookingsAsync(string Utente, System.Data.DataTable Table) {
+            return base.Channel.ViewBookingsAsync(Utente, Table);
         }
         
         public string PasswordRecovery(string Utente, string Password) {

@@ -4,6 +4,7 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:56603/Service1.svc?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:56603/Service1.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:56603/Service1.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/System.Data" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IService1_Registration_InputMessage">
@@ -24,17 +25,17 @@
   <wsdl:message name="IService1_Login_OutputMessage">
     <wsdl:part name="parameters" element="tns:LoginResponse" />
   </wsdl:message>
-  <wsdl:message name="IService1_Admin_InputMessage">
-    <wsdl:part name="parameters" element="tns:Admin" />
-  </wsdl:message>
-  <wsdl:message name="IService1_Admin_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AdminResponse" />
-  </wsdl:message>
   <wsdl:message name="IService1_AddBooking_InputMessage">
     <wsdl:part name="parameters" element="tns:AddBooking" />
   </wsdl:message>
   <wsdl:message name="IService1_AddBooking_OutputMessage">
     <wsdl:part name="parameters" element="tns:AddBookingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_ViewBookings_InputMessage">
+    <wsdl:part name="parameters" element="tns:ViewBookings" />
+  </wsdl:message>
+  <wsdl:message name="IService1_ViewBookings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ViewBookingsResponse" />
   </wsdl:message>
   <wsdl:message name="IService1_PasswordRecovery_InputMessage">
     <wsdl:part name="parameters" element="tns:PasswordRecovery" />
@@ -61,13 +62,13 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/Login" message="tns:IService1_Login_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/LoginResponse" message="tns:IService1_Login_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="Admin">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService1/Admin" message="tns:IService1_Admin_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AdminResponse" message="tns:IService1_Admin_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="AddBooking">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddBooking" message="tns:IService1_AddBooking_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddBookingResponse" message="tns:IService1_AddBooking_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ViewBookings">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/ViewBookings" message="tns:IService1_ViewBookings_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/ViewBookingsResponse" message="tns:IService1_ViewBookings_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="PasswordRecovery">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/PasswordRecovery" message="tns:IService1_PasswordRecovery_InputMessage" />
@@ -107,8 +108,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Admin">
-      <soap:operation soapAction="http://tempuri.org/IService1/Admin" style="document" />
+    <wsdl:operation name="AddBooking">
+      <soap:operation soapAction="http://tempuri.org/IService1/AddBooking" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -116,8 +117,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="AddBooking">
-      <soap:operation soapAction="http://tempuri.org/IService1/AddBooking" style="document" />
+    <wsdl:operation name="ViewBookings">
+      <soap:operation soapAction="http://tempuri.org/IService1/ViewBookings" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

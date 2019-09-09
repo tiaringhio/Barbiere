@@ -38,10 +38,10 @@
             this.MenuProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.LogOutLink = new System.Windows.Forms.LinkLabel();
             this.BookPanel = new System.Windows.Forms.Panel();
-            this.BookingButton = new System.Windows.Forms.Button();
+            this.BookButton = new System.Windows.Forms.Button();
             this.TitoloPanelPrenota = new System.Windows.Forms.Label();
-            this.Ora = new System.Windows.Forms.Label();
-            this.Data = new System.Windows.Forms.Label();
+            this.Hour = new System.Windows.Forms.Label();
+            this.Date = new System.Windows.Forms.Label();
             this.DatePicker = new System.Windows.Forms.DateTimePicker();
             this.TimePicker = new System.Windows.Forms.DateTimePicker();
             this.ProfilePanel = new System.Windows.Forms.Panel();
@@ -71,9 +71,9 @@
             // 
             this.UsernameDisplayer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
             this.UsernameDisplayer.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UsernameDisplayer.Location = new System.Drawing.Point(0, 712);
+            this.UsernameDisplayer.Location = new System.Drawing.Point(0, 688);
             this.UsernameDisplayer.Name = "UsernameDisplayer";
-            this.UsernameDisplayer.Size = new System.Drawing.Size(316, 35);
+            this.UsernameDisplayer.Size = new System.Drawing.Size(316, 30);
             this.UsernameDisplayer.TabIndex = 6;
             this.UsernameDisplayer.Text = "user";
             this.UsernameDisplayer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -115,7 +115,7 @@
             this.MenuBook.Name = "MenuBook";
             this.MenuBook.Size = new System.Drawing.Size(307, 75);
             this.MenuBook.Text = "Book";
-            this.MenuBook.Click += new System.EventHandler(this.MenuPrenota_Click);
+            this.MenuBook.Click += new System.EventHandler(this.BookMenu);
             // 
             // MyBookingsMenu
             // 
@@ -126,7 +126,7 @@
             this.MyBookingsMenu.Name = "MyBookingsMenu";
             this.MyBookingsMenu.Size = new System.Drawing.Size(307, 75);
             this.MyBookingsMenu.Text = "My Bookings";
-            this.MyBookingsMenu.Click += new System.EventHandler(this.MenuMiePrenotazioni_Click);
+            this.MyBookingsMenu.Click += new System.EventHandler(this.MyBookings);
             // 
             // MenuProfile
             // 
@@ -137,28 +137,28 @@
             this.MenuProfile.Name = "MenuProfile";
             this.MenuProfile.Size = new System.Drawing.Size(307, 75);
             this.MenuProfile.Text = "Profile";
-            this.MenuProfile.Click += new System.EventHandler(this.MenuProfilo_Click);
+            this.MenuProfile.Click += new System.EventHandler(this.ProfileMenu);
             // 
             // LogOutLink
             // 
             this.LogOutLink.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
             this.LogOutLink.LinkColor = System.Drawing.SystemColors.Control;
-            this.LogOutLink.Location = new System.Drawing.Point(0, 631);
+            this.LogOutLink.Location = new System.Drawing.Point(0, 644);
             this.LogOutLink.Name = "LogOutLink";
             this.LogOutLink.Size = new System.Drawing.Size(316, 16);
             this.LogOutLink.TabIndex = 14;
             this.LogOutLink.TabStop = true;
             this.LogOutLink.Text = "Log-Out";
             this.LogOutLink.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.LogOutLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LogOutLink_LinkClicked);
+            this.LogOutLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LogOut);
             // 
             // BookPanel
             // 
             this.BookPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
-            this.BookPanel.Controls.Add(this.BookingButton);
+            this.BookPanel.Controls.Add(this.BookButton);
             this.BookPanel.Controls.Add(this.TitoloPanelPrenota);
-            this.BookPanel.Controls.Add(this.Ora);
-            this.BookPanel.Controls.Add(this.Data);
+            this.BookPanel.Controls.Add(this.Hour);
+            this.BookPanel.Controls.Add(this.Date);
             this.BookPanel.Controls.Add(this.DatePicker);
             this.BookPanel.Controls.Add(this.TimePicker);
             this.BookPanel.Location = new System.Drawing.Point(418, 197);
@@ -167,19 +167,19 @@
             this.BookPanel.Size = new System.Drawing.Size(900, 400);
             this.BookPanel.TabIndex = 15;
             // 
-            // BookingButton
+            // BookButton
             // 
-            this.BookingButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
-            this.BookingButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BookingButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BookingButton.Location = new System.Drawing.Point(352, 284);
-            this.BookingButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.BookingButton.Name = "BookingButton";
-            this.BookingButton.Size = new System.Drawing.Size(200, 44);
-            this.BookingButton.TabIndex = 3;
-            this.BookingButton.Text = "Book";
-            this.BookingButton.UseVisualStyleBackColor = false;
-            this.BookingButton.Click += new System.EventHandler(this.BookingButton_Click);
+            this.BookButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
+            this.BookButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BookButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BookButton.Location = new System.Drawing.Point(352, 284);
+            this.BookButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.BookButton.Name = "BookButton";
+            this.BookButton.Size = new System.Drawing.Size(200, 44);
+            this.BookButton.TabIndex = 3;
+            this.BookButton.Text = "Book";
+            this.BookButton.UseVisualStyleBackColor = false;
+            this.BookButton.Click += new System.EventHandler(this.Book);
             // 
             // TitoloPanelPrenota
             // 
@@ -191,25 +191,25 @@
             this.TitoloPanelPrenota.TabIndex = 10;
             this.TitoloPanelPrenota.Text = "Book an appointment";
             // 
-            // Ora
+            // Hour
             // 
-            this.Ora.AutoSize = true;
-            this.Ora.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Ora.Location = new System.Drawing.Point(301, 214);
-            this.Ora.Name = "Ora";
-            this.Ora.Size = new System.Drawing.Size(48, 26);
-            this.Ora.TabIndex = 10;
-            this.Ora.Text = "Ora";
+            this.Hour.AutoSize = true;
+            this.Hour.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Hour.Location = new System.Drawing.Point(301, 217);
+            this.Hour.Name = "Hour";
+            this.Hour.Size = new System.Drawing.Size(59, 26);
+            this.Hour.TabIndex = 10;
+            this.Hour.Text = "Hour";
             // 
-            // Data
+            // Date
             // 
-            this.Data.AutoSize = true;
-            this.Data.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Data.Location = new System.Drawing.Point(291, 139);
-            this.Data.Name = "Data";
-            this.Data.Size = new System.Drawing.Size(58, 26);
-            this.Data.TabIndex = 10;
-            this.Data.Text = "Data";
+            this.Date.AutoSize = true;
+            this.Date.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Date.Location = new System.Drawing.Point(301, 144);
+            this.Date.Name = "Date";
+            this.Date.Size = new System.Drawing.Size(58, 26);
+            this.Date.TabIndex = 10;
+            this.Date.Text = "Date";
             // 
             // DatePicker
             // 
@@ -274,7 +274,7 @@
             this.ChangeButton.TabIndex = 5;
             this.ChangeButton.Text = "Change";
             this.ChangeButton.UseVisualStyleBackColor = false;
-            this.ChangeButton.Click += new System.EventHandler(this.ChangeButton_Click_1);
+            this.ChangeButton.Click += new System.EventHandler(this.UserChange);
             // 
             // OldPasswordBox
             // 
@@ -442,7 +442,7 @@
             // MyBookingsTitle
             // 
             this.MyBookingsTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F);
-            this.MyBookingsTitle.Location = new System.Drawing.Point(3, 48);
+            this.MyBookingsTitle.Location = new System.Drawing.Point(0, 40);
             this.MyBookingsTitle.Name = "MyBookingsTitle";
             this.MyBookingsTitle.Size = new System.Drawing.Size(900, 50);
             this.MyBookingsTitle.TabIndex = 0;
@@ -494,10 +494,10 @@
         private System.Windows.Forms.ToolStripMenuItem MenuProfile;
         private System.Windows.Forms.LinkLabel LogOutLink;
         private System.Windows.Forms.Panel BookPanel;
-        private System.Windows.Forms.Button BookingButton;
+        private System.Windows.Forms.Button BookButton;
         private System.Windows.Forms.Label TitoloPanelPrenota;
-        private System.Windows.Forms.Label Ora;
-        private System.Windows.Forms.Label Data;
+        private System.Windows.Forms.Label Hour;
+        private System.Windows.Forms.Label Date;
         private System.Windows.Forms.DateTimePicker DatePicker;
         private System.Windows.Forms.DateTimePicker TimePicker;
         private System.Windows.Forms.Panel ProfilePanel;

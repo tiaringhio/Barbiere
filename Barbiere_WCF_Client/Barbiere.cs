@@ -10,21 +10,33 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using Barbiere_WCF_Client.Admin;
 using Barbiere_WCF_Client.Cliente;
-using Barbiere_WCF_Server;
 
 namespace Barbiere_WCF_Client {
     public partial class Barbiere : Form {
-        // La connection string la devi cambiare, perché il percorso è quello del mio disco, vai su Server Explorer (Il menu),
-        // right click sul DB, Proprietà, copia la Connection String in modo che sia formattata come la mia, ez pez
+
+        // This program makes use of Stored Procedures, by using the i make sure that the code is clean
+        // while protecting the program from SQLInjection, since everything is parametrized.
+        // Created by Mattia Ricci and Mattia Greci
+
+
+        // I use this string to display the username in the Dashboard
         public static string UserTitle { get; set; }
         public Barbiere()
         {
             InitializeComponent();
         }
-        // I add the data that the user inputs in the db, using a stored procedure called UserAdd
-        ServiceReference1.Service1Client client = new ServiceReference1.Service1Client();
-        Service1 server = new Service1();
-        private void RegistrationButton_Click(object sender, EventArgs e)
+
+        // Reference to WCF
+        ServiceReference1.Service1Client WCF = new ServiceReference1.Service1Client();
+
+        // This function clears every textbox
+        void Clear()
+        {
+            NameBox.Text = SurnameBox.Text = UserBoxSign.Text = PasswordBoxSign.Text = PasswordBoxSignConfirm.Text = "";
+        }
+
+        // I add in the db the data that the user inputs.
+        private void Registration(object sender, EventArgs e)
         {
             // The password will be hashed trough EasyEncryption, via the MD5 protocol
             string HashedPassword = EasyEncryption.MD5.ComputeMD5Hash(PasswordBoxSign.Text);
@@ -54,53 +66,50 @@ namespace Barbiere_WCF_Client {
             try
             {
                 // If it's taken i show a message...
-                if (!client.UserChecker(UserBoxSign.Text)) {
+                if (!WCF.UserChecker(UserBoxSign.Text)) {
                     MessageBox.Show("Username already taken!");
+                    Clear();
                 }
                 // ... otherwise i let the user register
                 else
                 {
-                    client.Registration(NameBox.Text, SurnameBox.Text, UserBoxSign.Text, HashedPassword, AdminCheck.Checked);
-                    MessageBox.Show("Registration succeded, you can now login!");
+                    // I send the data to the WCF to be stored in the DB
+                    WCF.Registration(NameBox.Text, SurnameBox.Text, UserBoxSign.Text, HashedPassword, AdminCheck.Checked);
+                    MessageBox.Show("Registration succeeded, you can now login!");
                     Clear();
                 }
             }
-            catch (Exception exce)
+            catch (Exception registrationException)
             {
-                MessageBox.Show(exce.ToString());
+                MessageBox.Show(registrationException.ToString());
+                throw;
             }
         }
-        // This function clears every textbox
-        void Clear()
-        {
-            NameBox.Text = SurnameBox.Text = UserBoxSign.Text = PasswordBoxSign.Text = PasswordBoxSignConfirm.Text = "";
-        }
 
-        private void LoginButton_Click(object sender, EventArgs e)
+        // This function allows the user to login
+        private void Login(object sender, EventArgs e)
         {
             // The password will be hashed trough EasyEncryption, via the MD5 protocol
-            string HashedPassword = EasyEncryption.MD5.ComputeMD5Hash(PasswordBoxLog.Text);
-            // First i check that the TextBoxes are not empty...
+            string HashedPassword = EasyEncryption.MD5.ComputeMD5Hash(text: PasswordBoxLog.Text);
+            // First i check that the user box is not empy...
             if (UserBoxLog.Text == "")
             {
-                MessageBox.Show("You forgot the username!");
+                MessageBox.Show(text: "You forgot the username!");
                 UserBoxLog.Focus();
                 return;
             }
-            else if (PasswordBoxLog.Text == "")
+            // ... same for the password
+            if (PasswordBoxLog.Text == "")
             {
-                MessageBox.Show("You forgot the password");
+                MessageBox.Show(text: "You forgot the password");
                 PasswordBoxLog.Focus();
                 return;
             }
+
+            // Then i send the data to the WCF so i can check if user and password are correct
             try
             {
-                bool isAdmin = server.isAdmin;
-                client.Login(UserBoxLog.Text, HashedPassword);
-                MessageBox.Show(isAdmin.ToString());
-
-                client.Admin(UserBoxLog.Text);
-                MessageBox.Show(isAdmin.ToString());
+                bool isAdmin = WCF.Login(Utente: UserBoxLog.Text, Password: HashedPassword);
                 UserTitle = UserBoxLog.Text;
                 // If the user is admin i open the admin dashboard...
                 if (isAdmin)
@@ -109,28 +118,28 @@ namespace Barbiere_WCF_Client {
                     this.Hide();
                     admin.ShowDialog();
                     UserTitle = UserBoxLog.Text;
-
                 }
                 // ... else i open the client dashboard
                 else
                 {
-                    Client_Dashboard cliente = new Client_Dashboard();
+                    Client_Dashboard client = new Client_Dashboard();
                     this.Hide();
-                    cliente.ShowDialog();
+                    client.ShowDialog();
                     UserTitle = UserBoxLog.Text;
                 }
             }
-            catch (Exception gne)
+            catch (Exception loginException)
             {
-                MessageBox.Show("username or password (or both) are wrong!");
+                MessageBox.Show(text: "Username or password (or both) are wrong!");
                 UserBoxLog.Clear();
                 PasswordBoxLog.Clear();
                 UserBoxLog.Focus();
-                MessageBox.Show(gne.ToString());
+                MessageBox.Show(text: loginException.ToString());
             }
         }
 
-        private void PasswordRecoveryLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        // This is where the user can recover the password
+        private void PasswordRecovery(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Hide();
             Password_Recovery recovery = new Password_Recovery();

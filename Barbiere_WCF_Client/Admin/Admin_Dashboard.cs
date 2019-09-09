@@ -14,19 +14,30 @@ namespace Barbiere_WCF_Client.Admin
     public partial class Admin_Dashboard : Form
     {
         string user = Barbiere.UserTitle;
-        ServiceReference1.Service1Client client = new ServiceReference1.Service1Client();
+        // Reference to WCF
+        ServiceReference1.Service1Client WCF = new ServiceReference1.Service1Client();
 
         public Admin_Dashboard()
         {
             InitializeComponent();
         }
 
+        // On load i need to set some values...
         private void Admin_Dashboard_Load(object sender, EventArgs e)
         {
+            // Set minimum date and time in the picker to today and now
+            DatePicker.MinDate = DateTime.Today;
+            TimePicker.MinDate = DateTime.Parse("9:00");
+
+            // And the maxium dates
+            DatePicker.MaxDate = DateTime.Now.AddDays(15);
+            TimePicker.MaxDate = DateTime.Parse("19:00");
+
             // The username is showed in the form
             UsernameDisplayer.Text = user;
         }
 
+        // This function hides every panel
         public void hidePanels()
         {
             BookPanel.Visible = false;
@@ -34,28 +45,31 @@ namespace Barbiere_WCF_Client.Admin
             ProfilePanel.Visible = false;
         }
 
-        private void MenuBook_Click(object sender, EventArgs e)
+        // At click i show the requested panel while hiding the others
+        private void BookMenu(object sender, EventArgs e)
         {
             hidePanels();
             BookPanel.Visible = true;
         }
-        
 
-
-        private void BookingButton_Click(object sender, EventArgs e)
+        // When i click the Book button i sent the value to the WCF Service, so they can be stored in the DB
+        private void Book(object sender, EventArgs e)
         {
             try
             {
-                client.AddBooking(user, DatePicker.Value, TimePicker.Value);
-                MessageBox.Show("olè");
-                MessageBox.Show("Ci vediamo " + DatePicker.Text + " alle ore: " + TimePicker.Text + "!");
+                WCF.AddBooking(user, DatePicker.Value, TimePicker.Value);
+                MessageBox.Show("We'll se you " + DatePicker.Text + " At " + TimePicker.Text + "!");
             }
-            catch (Exception exce)
+            catch (Exception bookException)
             {
-                MessageBox.Show(exce.ToString());
+                MessageBox.Show(bookException.ToString());
+                throw;
             }
         }
-        private void AllBookingsMenu_Click(object sender, EventArgs e)
+
+        // At click i show the requested panel while hiding the others.
+        // Also i load the data from the db and fill a DataGridView
+        private void MyBookings(object sender, EventArgs e)
         {
             // I hide every panel except for the My Bookings one
             hidePanels();
@@ -66,39 +80,52 @@ namespace Barbiere_WCF_Client.Admin
                 using (SqlConnection sqlCon = new SqlConnection(Properties.Settings.Default.ConnectionString))
                 {
                     sqlCon.Open();
-                    using (SqlCommand ViewBookings = new SqlCommand("SELECT * FROM Prenotazioni WHERE Data > CAST(GETDATE() AS DATE)", sqlCon))
+                    using (SqlCommand ViewBookings = new SqlCommand("FutureBookings", sqlCon))
                     {
+                        ViewBookings.CommandType = CommandType.StoredProcedure;
                         ViewBookings.ExecuteNonQuery();
-
-                        using (SqlDataAdapter datadapter = new SqlDataAdapter(ViewBookings))
+                        try
                         {
-                            DataTable mieprenotazioni = new DataTable();
-                            datadapter.Fill(mieprenotazioni);
-                            MyBookingsTable.DataSource = mieprenotazioni;
+                            using (SqlDataAdapter datadapter = new SqlDataAdapter(ViewBookings))
+                            {
+                                DataTable mieprenotazioni = new DataTable();
+                                datadapter.Fill(mieprenotazioni);
+                                MyBookingsTable.DataSource = mieprenotazioni;
+                            }
+                        }
+                        catch (Exception bookingsException)
+                        {
+                            MessageBox.Show(bookingsException.ToString());
+                            throw;
                         }
                     }
                 }
             }
-            catch (Exception exc)
+            catch (Exception bookingsException2)
             {
-                MessageBox.Show(exc.ToString());
+                MessageBox.Show(bookingsException2.ToString());
+                throw;
             }
         }
 
-        private void MenuProfile_Click(object sender, EventArgs e)
+        // At click i show the requested panel while hiding the others
+        private void ProfileMenu(object sender, EventArgs e)
         {
             hidePanels();
             ProfilePanel.Visible = true;
         }
 
-        private void ChangeButton_Click(object sender, EventArgs e)
+        // This Method allows the user to change username or password or both, the data is sent to a WCF
+        // service that handles the information with a stored procedure
+        private void UserChange(object sender, EventArgs e)
         {
+            // First some controls...
             if (NewPasswordBox.Text == "" && NewPasswordBoxConfirm.Text == "" && NewUserBox.Text == "" && OldPasswordBox.Text == "")
             {
                 MessageBox.Show("Are you sure you're in the right place?");
                 NewPasswordBox.Focus();
             }
-            // First i check if the passwords match
+            // ... i check if the passwords match
             else if (NewPasswordBox.Text != NewPasswordBoxConfirm.Text)
             {
                 MessageBox.Show("Passwords don't match");
@@ -124,27 +151,37 @@ namespace Barbiere_WCF_Client.Admin
                     {
                         NewHashedPassword = EasyEncryption.MD5.ComputeMD5Hash(NewPasswordBox.Text);
                     }
-                    client.UserPasswordChange(NewUserBox.Text, NewHashedPassword, CurrentUserBox.Text, OldHashedPassword);
-                    MessageBox.Show("Information changed!");
-                    if (NewUserBox.Text != "" && OldPasswordBox.Text != "")
+                    // I send the data to the WCF Service
+                    try
                     {
-                        UsernameDisplayer.Text = NewUserBox.Text;
+                        WCF.UserPasswordChange(NewUserBox.Text, NewHashedPassword, CurrentUserBox.Text, OldHashedPassword);
+                        MessageBox.Show("Information changed!");
+                        if (NewUserBox.Text != "" && OldPasswordBox.Text != "")
+                        {
+                            UsernameDisplayer.Text = NewUserBox.Text;
+                        }
+                    }
+                    catch (Exception WCFexception)
+                    {
+                        MessageBox.Show(WCFexception.ToString());
+                        throw;
                     }
                 }
-                catch (Exception yu)
+                catch (Exception WCFexception2)
                 {
-                    MessageBox.Show(yu.ToString());
+                    MessageBox.Show(WCFexception2.ToString());
+                    throw;
                 }
             }
         }
-        private void LogOutLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+
+        // Simple log out
+        private void LogOut(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Barbiere logreg = new Barbiere();
             this.Hide();
             logreg.ShowDialog();
         }
-
-        
     }
 }
 

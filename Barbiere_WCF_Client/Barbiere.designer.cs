@@ -96,7 +96,7 @@
             this.RegistrationButton.TabIndex = 29;
             this.RegistrationButton.Text = "Register";
             this.RegistrationButton.UseVisualStyleBackColor = false;
-            this.RegistrationButton.Click += new System.EventHandler(this.RegistrationButton_Click);
+            this.RegistrationButton.Click += new System.EventHandler(this.Registration);
             // 
             // PasswordBoxSignConfirm
             // 
@@ -236,7 +236,7 @@
             this.LoginButton.TabIndex = 35;
             this.LoginButton.Text = "Login";
             this.LoginButton.UseVisualStyleBackColor = false;
-            this.LoginButton.Click += new System.EventHandler(this.LoginButton_Click);
+            this.LoginButton.Click += new System.EventHandler(this.Login);
             // 
             // PasswordBoxLog
             // 
@@ -351,7 +351,7 @@
             this.PasswordRecoveryLink.TabIndex = 10;
             this.PasswordRecoveryLink.TabStop = true;
             this.PasswordRecoveryLink.Text = "Recover Password";
-            this.PasswordRecoveryLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.PasswordRecoveryLink_LinkClicked);
+            this.PasswordRecoveryLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.PasswordRecovery);
             // 
             // Barbiere
             // 

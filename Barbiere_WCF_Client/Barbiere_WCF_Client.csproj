@@ -82,11 +82,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Log_Reg.cs">
+    <Compile Include="Barbiere.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Log_Reg.designer.cs">
-      <DependentUpon>Log_Reg.cs</DependentUpon>
+    <Compile Include="Barbiere.designer.cs">
+      <DependentUpon>Barbiere.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -99,8 +99,8 @@
     <EmbeddedResource Include="Cliente\Password_Recovery.resx">
       <DependentUpon>Password_Recovery.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Log_Reg.resx">
-      <DependentUpon>Log_Reg.cs</DependentUpon>
+    <EmbeddedResource Include="Barbiere.resx">
+      <DependentUpon>Barbiere.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -120,6 +120,9 @@
     <None Include="Connected Services\ServiceReference1\Service11.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\ServiceReference1\Service12.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -136,12 +139,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Barbiere_WCF_Server\Barbiere_WCF_Server.csproj">
-      <Project>{97ced173-3190-4713-b136-e84dc73a2299}</Project>
-      <Name>Barbiere_WCF_Server</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\josh-sorenson-FvKpUZCbZ-s-unsplash.jpg" />
