@@ -23,12 +23,13 @@ namespace Barbiere_WCF_Server {
                     return true;
                 }
             }
-            catch (Exception exce)
+            catch (Exception checkerException)
             {
-                Console.WriteLine(exce.ToString());
+                Console.WriteLine(checkerException.ToString());
             }
-            throw new NotImplementedException();
+            return true;
         }
+
         // With this method i add the values in the database, using a stored procedure.
         // I chose to use a stored procedure because it's cleaner and more secure, since
         // i use parameters the code is not vulnerable to SQL Injection
@@ -50,15 +51,15 @@ namespace Barbiere_WCF_Server {
                 }
                 return "Success!";
             }
-            catch (Exception ex)
+            catch
             {
-                Console.WriteLine(ex.ToString());
                 return "Error!";
             }
         }
 
-        // LOGIN
-
+        // This stored procedure checks that user and password exist in the db,
+        // after that it checks that the user is admin using a DataReader, returing
+        // true or false
         public bool Login(string Utente, string Password)
         {
             try
@@ -93,6 +94,7 @@ namespace Barbiere_WCF_Server {
             return false;
         }
 
+        // This stored procedure adds the booking details received from the form in the database, simple as that
         public string AddBooking(string Utente, DateTime Date, DateTime Time)
         {
             try
@@ -109,21 +111,19 @@ namespace Barbiere_WCF_Server {
                     AddBooking.Parameters["@Ora"].Value = Time;
                     AddBooking.ExecuteNonQuery();
                 }
-                return "funziona";
+                return "It works!";
             }
-            catch (Exception exc)
+            catch
             {
-                return "errorino";
+                return "Error!";
             }
         }
 
         // In this function i use a stored procedure where i update the password given the user that the client inputs.
-        // The password will be hashed trough EasyEncryption, via the MD5 protocol.
         public string PasswordRecovery(string Utente, string Password)
         {
             try
             {
-
                 using (SqlConnection sqlCon = new SqlConnection(Properties.Settings.Default.ConnectionString))
                 {
                     sqlCon.Open();
@@ -143,7 +143,7 @@ namespace Barbiere_WCF_Server {
 
         // This function allows the user to change username and password,
         // i used a stored procedure that allows me to check which field is empty,
-        // so that the user can change either username or password or both in one simple click
+        // so that the user can change either username or password or both in one simple click.
         public string UserPasswordChange(string Utente, string Password, string oldUtente, string oldPassword)
         {
             try
