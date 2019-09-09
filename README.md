@@ -5,6 +5,7 @@
 - SQL Express
 - EasyEncryption
 - Microsoft IIS
+- .NET Framework (included in Visual Studio)
 
 ### [SQL Express](https://www.microsoft.com/en-us/sql-server/sql-server-editions-express)
 Included you will find  `Barbiere.sql`, this file contains everything you need  to create the database required to run Barbiere, included all the tables and stored procedures.
