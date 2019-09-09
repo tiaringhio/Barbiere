@@ -1,2 +1,10 @@
 language: csharp
-solution: Barbiere_WCF.sln
+solution: Barbiere_WCF.slnaddons:
+sonarcloud:
+  organization: "tiaringhio-github"
+  token:
+    secure: "**************************" # encrypted value of your token
+
+script:
+  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
+  - sonar-scanner
