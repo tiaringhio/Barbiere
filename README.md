@@ -1,5 +1,7 @@
-# Barbiere
+# Barbiere [![Build Status](https://travis-ci.org/tiaringhio/Barbiere_WCF.svg?branch=master)](https://travis-ci.org/tiaringhio/Barbiere_WCF)
  This is a program that uses WCF Services to book appointments with your barber trough an intuitive GUI.
+ 
+ Checked with [Travis Ci](https://travis-ci.org/)
  
 ## Requirements
 - SQL Express
