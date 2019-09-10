@@ -48,6 +48,21 @@ You may want to change the connection string, although it should not be necessar
 - Properties
 - Settings
 - Here you will find the Connection String, feel free to change it!
+### Polish
+
+Just some things that improve the experience!
+
+**Start every project at the same time:**
+- Right Click on Solution
+- Set StartUp Projects
+
+![Start Multiple](https://github.com/tiaringhio/Barbiere_WCF/blob/master/Resources/multiple%20startup.jpg)
+
+**Don't show WCF Test windows at start:**
+- Right click on Barbiere_WCF_Server
+- Properties
+
+![Don't Show](https://github.com/tiaringhio/Barbiere_WCF/blob/master/Resources/no%20startup%20wcf.jpg)
 
 ### Contacts
 
