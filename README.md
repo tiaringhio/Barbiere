@@ -2,12 +2,14 @@
  This is a program that uses WCF Services to book appointments with your barber trough an intuitive GUI.
  
  **Created by:**
+ 
  -  [Mattia Ricci](https://github.com/tiaringhio)
  -  [Mattia Greci](https://github.com/MattiaG98)
  
  **Checked With:**
- - [Travis Ci] (https://travis-ci.org/)
- - [Codacy] (https://app.codacy.com)
+ 
+ - [Travis Ci](https://travis-ci.org/)
+ - [Codacy](https://app.codacy.com)
  - [Buddy Works](https://buddy.works)
  
 ## Requirements
