@@ -98,6 +98,7 @@ namespace Barbiere_WCF_Client {
                 UserBoxLog.Focus();
                 return;
             }
+
             // ... same for the password
             if (PasswordBoxLog.Text == "")
             {
@@ -105,36 +106,46 @@ namespace Barbiere_WCF_Client {
                 PasswordBoxLog.Focus();
                 return;
             }
-
-            // Then i send the data to the WCF so i can check if user and password are correct
-            try
+            // I check that the user exists, if not, i show a message
+            if (!WCF.UserChecker(UserBoxLog.Text))
             {
-                bool isAdmin = WCF.Login(Utente: UserBoxLog.Text, Password: HashedPassword);
-                UserTitle = UserBoxLog.Text;
-                // If the user is admin i open the admin dashboard...
-                if (isAdmin)
-                {
-                    Admin_Dashboard admin = new Admin_Dashboard();
-                    this.Hide();
-                    admin.ShowDialog();
-                    UserTitle = UserBoxLog.Text;
-                }
-                // ... else i open the client dashboard
-                else
-                {
-                    Client_Dashboard client = new Client_Dashboard();
-                    this.Hide();
-                    client.ShowDialog();
-                    UserTitle = UserBoxLog.Text;
-                }
-            }
-            catch (Exception loginException)
-            {
-                MessageBox.Show(text: "Username or password (or both) are wrong!");
+                MessageBox.Show("Username doesn't exist!");
                 UserBoxLog.Clear();
                 PasswordBoxLog.Clear();
                 UserBoxLog.Focus();
-                MessageBox.Show(text: loginException.ToString());
+            }
+            // Then i send the data to the WCF so i can check if user and password are correct
+            else
+            {
+                try
+                {
+                    bool isAdmin = WCF.Login(Utente: UserBoxLog.Text, Password: HashedPassword);
+                    UserTitle = UserBoxLog.Text;
+                    // If the user is admin i open the admin dashboard...
+                    if (isAdmin)
+                    {
+                        Admin_Dashboard admin = new Admin_Dashboard();
+                        this.Hide();
+                        admin.ShowDialog();
+                        UserTitle = UserBoxLog.Text;
+                    }
+                    // ... else i open the client dashboard
+                    else
+                    {
+                        Client_Dashboard client = new Client_Dashboard();
+                        this.Hide();
+                        client.ShowDialog();
+                        UserTitle = UserBoxLog.Text;
+                    }
+                }
+                catch (Exception loginException)
+                {
+                    MessageBox.Show(text: "Username or password (or both) are wrong!");
+                    UserBoxLog.Clear();
+                    PasswordBoxLog.Clear();
+                    UserBoxLog.Focus();
+                    MessageBox.Show(text: loginException.ToString());
+                }
             }
         }
 

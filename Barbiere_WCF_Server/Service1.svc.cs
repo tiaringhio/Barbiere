@@ -17,17 +17,17 @@ namespace Barbiere_WCF_Server {
                     var result = UserChecker.ExecuteScalar();
                     if (result != null)
                     {
-                        return false;
+                        return true;
                     }
 
-                    return true;
+                    return false;
                 }
             }
             catch (Exception checkerException)
             {
                 Console.WriteLine(checkerException.ToString());
             }
-            return true;
+            return false;
         }
 
         // With this method i add the values in the database, using a stored procedure.
