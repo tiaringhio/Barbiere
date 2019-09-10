@@ -42,7 +42,7 @@ The program uses IIS, Internet Information Services (IIS) for Windows®
 -  Create the database
    -  Under `\Resources` you will find `Barbiere.sql`, open it in SSMS and execute the query, you will create the db, everything included!
 -  Open `Barbiere_WCF.sln`.
--  In the `Server Explorer` tab, refresh `Data COnnections`, you should see `Barbiere`.
+-  In the `Server Explorer` tab, refresh `Data Connections`, you should see `Barbiere`.
 -  Install EasyEncryption.
 -  Run the code! `F5`.
 
