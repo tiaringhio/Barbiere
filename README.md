@@ -8,16 +8,16 @@
  
  **Checked With:**
  
- - [Travis Ci](https://travis-ci.org/)
- - [Codacy](https://app.codacy.com)
- - [Buddy Works](https://buddy.works)
+ -  [Travis Ci](https://travis-ci.org/)
+ -  [Codacy](https://app.codacy.com)
+ -  [Buddy Works](https://buddy.works)
  
 ## Requirements
-- SQL Server Express
-- SQL Server Management Studio (SSMS)
-- EasyEncryption
-- Microsoft IIS
-- .NET Framework (included in Visual Studio)
+-  SQL Server Express
+-  SQL Server Management Studio (SSMS)
+-  EasyEncryption
+-  Microsoft IIS
+-  .NET Framework (included in Visual Studio)
 
 ### [SQL Express](https://www.microsoft.com/en-us/sql-server/sql-server-editions-express)
 Included you will find  `Barbiere.sql`, this file contains everything you need  to create the database required to run Barbiere, included all the tables and stored procedures.
@@ -38,34 +38,34 @@ The program uses IIS, Internet Information Services (IIS) for Windows®
 
 ## Installation
 
-- Clone the repository
-- Create the database
-  - Under `\Resources` you will find `Barbiere.sql`, open it in SSMS and execute the query, you will create the db, everything included!
-- Open `Barbiere_WCF.sln`.
-- In the `Server Explorer` tab, refresh `Data COnnections`, you should see `Barbiere`.
-- Install EasyEncryption.
-- Run the code! `F5`.
+-  Clone the repository
+-  Create the database
+   -  Under `\Resources` you will find `Barbiere.sql`, open it in SSMS and execute the query, you will create the db, everything included!
+-  Open `Barbiere_WCF.sln`.
+-  In the `Server Explorer` tab, refresh `Data COnnections`, you should see `Barbiere`.
+-  Install EasyEncryption.
+-  Run the code! `F5`.
 
 ### Troubleshooting
 
 You may want to change the connection string, although it should not be necessary, you can do it this way:
-- Right Click on Barbiere_WCF.sln
-- Properties
-- Settings
-- Here you will find the Connection String, feel free to change it!
+-  Right Click on Barbiere_WCF.sln
+-  Properties
+-  Settings
+-  Here you will find the Connection String, feel free to change it!
 ### Polish
 
 Just some things that improve the experience!
 
 **Start every project at the same time:**
-- Right Click on Solution
-- Set StartUp Projects
+-  Right Click on Solution
+-  Set StartUp Projects
 
 ![Start Multiple](https://github.com/tiaringhio/Barbiere_WCF/blob/master/Resources/multiple%20startup.jpg)
 
 **Don't show WCF Test windows at start:**
-- Right click on Barbiere_WCF_Server
-- Properties
+-  Right click on Barbiere_WCF_Server
+-  Properties
 
 ![Don't Show](https://github.com/tiaringhio/Barbiere_WCF/blob/master/Resources/no%20startup%20wcf.jpg)
 
