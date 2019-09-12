@@ -66,7 +66,7 @@ namespace Barbiere_WCF_Client {
             try
             {
                 // If it's taken i show a message...
-                if (!WCF.UserChecker(UserBoxSign.Text)) {
+                if (WCF.UserChecker(UserBoxSign.Text)) {
                     MessageBox.Show("Username already taken!");
                     Clear();
                 }
