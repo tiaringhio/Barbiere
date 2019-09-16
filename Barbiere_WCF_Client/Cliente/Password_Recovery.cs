@@ -38,26 +38,38 @@ namespace Barbiere_WCF_Client.Cliente {
                 PasswordRecoveryNew.Focus();
                 return;
             }
-            try
+            // I check that the username exists
+            if (!WCF.UserChecker(PasswordRecoveryUser.Text))
             {
-                // The password will be hashed trough EasyEncryption, via the MD5 protocol
-                string HashedPassword = EasyEncryption.MD5.ComputeMD5Hash(PasswordRecoveryNew.Text);
-
-                // I send the data to the WCF that updates the password given the user that the client inputs.
-                WCF.PasswordRecovery(PasswordRecoveryUser.Text, HashedPassword);
-
-                // I show a message to the user letting him/her know that the password has been changed
-                MessageBox.Show("Password changed successfully, you can now login");
-
-                // Then i send the user back to the initial form to login
-                Barbiere logreg = new Barbiere();
-                this.Hide();
-                logreg.ShowDialog();
+                MessageBox.Show("Username doesn't exist!");
+                PasswordRecoveryUser.Clear();
+                PasswordRecoveryNew.Clear();
+                PasswordRecoveryNewConfirm.Clear();
+                PasswordRecoveryUser.Focus();
             }
-             catch (Exception recoveryException)
+            else
             {
-                MessageBox.Show(recoveryException.ToString());
-                throw;
+                try
+                {
+                    // The password will be hashed trough EasyEncryption, via the MD5 protocol
+                    string HashedPassword = EasyEncryption.MD5.ComputeMD5Hash(PasswordRecoveryNew.Text);
+
+                    // I send the data to the WCF that updates the password given the user that the client inputs.
+                    WCF.PasswordRecovery(PasswordRecoveryUser.Text, HashedPassword);
+
+                    // I show a message to the user letting him/her know that the password has been changed
+                    MessageBox.Show("Password changed successfully, you can now login");
+
+                    // Then i send the user back to the initial form to login
+                    Barbiere logreg = new Barbiere();
+                    this.Hide();
+                    logreg.ShowDialog();
+                }
+                catch (Exception recoveryException)
+                {
+                    MessageBox.Show(recoveryException.ToString());
+                    throw;
+                }
             }
         }
 
@@ -67,6 +79,16 @@ namespace Barbiere_WCF_Client.Cliente {
             Barbiere logreg = new Barbiere();
             this.Hide();
             logreg.ShowDialog();
+        }
+
+        private void Password_Recovery_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Panel_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
